@@ -1,0 +1,143 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace ChessRook
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+            pictureBox1.Image = Image.FromFile("C:\\Users\\user\\source\\repos\\ORSAPR\\images\\1.png");
+            pictureBox2.Image = Image.FromFile("C:\\Users\\user\\source\\repos\\ORSAPR\\images\\2.png");
+            pictureBox3.Image = Image.FromFile("C:\\Users\\user\\source\\repos\\ORSAPR\\images\\3.png");
+            button1.Enabled = false;
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CheckColor()
+        {
+            if ((textBox1.BackColor == Color.LightGreen) && (textBox2.BackColor == Color.LightGreen)
+                && (textBox3.BackColor == Color.LightGreen) && (textBox4.BackColor == Color.LightGreen)
+                && (textBox5.BackColor == Color.LightGreen))
+                button1.Enabled = true;
+        }
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            int value = 0;
+            int.TryParse(textBox1.Text, out value); 
+
+            if ((value > 10000) || (value < 10))
+            {
+                textBox1.BackColor = Color.LightCoral;
+                button1.Enabled = false;
+
+            }
+            else
+            {
+                textBox1.BackColor = Color.LightGreen;
+            }
+            CheckColor();
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            int value;
+            int.TryParse(textBox2.Text, out value);
+
+            if ((value > 500) || (value < 5))
+            {
+                textBox2.BackColor = Color.LightCoral;
+                button1.Enabled = false;
+            }
+            else
+            {
+                textBox2.BackColor = Color.LightGreen;
+            }
+            CheckColor();
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+            int value;
+            int.TryParse(textBox3.Text, out value);
+
+            if ((value > 100) || (value < 3))
+            {
+                textBox3.BackColor = Color.LightCoral;
+                button1.Enabled = false;
+            }
+            else
+            {
+                textBox3.BackColor = Color.LightGreen;
+            }
+            CheckColor();
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+            int value;
+            int.TryParse(textBox4.Text, out value);
+
+            if ((value > 150) || (value < 2))
+            {
+                textBox4.BackColor = Color.LightCoral;
+                button1.Enabled = false;
+            }
+            else
+            {
+                textBox4.BackColor = Color.LightGreen;
+            }
+            CheckColor();
+        }
+
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+            int value;
+            int.TryParse(textBox5.Text, out value);
+
+            if ((value > 100) || (value < 3))
+            {
+                textBox5.BackColor = Color.LightCoral;
+                button1.Enabled = false;
+            }
+            else
+            {
+                textBox5.BackColor = Color.LightGreen;
+            }
+            CheckColor();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int textFirst;
+            int.TryParse(textBox2.Text, out textFirst);
+            int textSecond;
+            int.TryParse(textBox3.Text, out textSecond);
+            if (textFirst > textSecond)
+            {
+                MessageBox.Show("Диаметр нижнего основания не может быть больше диаметра верхнего", "Ошибка валидации", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+
+            int.TryParse(textBox4.Text, out textFirst);
+            int.TryParse(textBox5.Text, out textSecond);
+            if (textFirst > textSecond)
+            {
+                MessageBox.Show("Высота нижнего основания не может быть больше высоты верхнего","Ошибка валидации", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+    }
+}
