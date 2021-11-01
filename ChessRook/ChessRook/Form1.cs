@@ -15,9 +15,9 @@ namespace ChessRook
         public Form1()
         {
             InitializeComponent();
-            pictureBox1.Image = Image.FromFile("C:\\Users\\user\\source\\repos\\ORSAPR\\images\\1.png");
-            pictureBox2.Image = Image.FromFile("C:\\Users\\user\\source\\repos\\ORSAPR\\images\\2.png");
-            pictureBox3.Image = Image.FromFile("C:\\Users\\user\\source\\repos\\ORSAPR\\images\\3.png");
+            //pictureBox1.Image = Image.FromFile("C:\\Users\\user\\source\\repos\\ORSAPR\\images\\1.png");
+            //pictureBox2.Image = Image.FromFile("C:\\Users\\user\\source\\repos\\ORSAPR\\images\\2.png");
+            //pictureBox3.Image = Image.FromFile("C:\\Users\\user\\source\\repos\\ORSAPR\\images\\3.png");
             button1.Enabled = false;
         }
 
@@ -33,6 +33,34 @@ namespace ChessRook
                 && (textBox5.BackColor == Color.LightGreen))
                 button1.Enabled = true;
         }
+
+        private void CheckDiameter()
+        {
+            if ((textBox2.Text != null) && (textBox3.Text != null))
+            {
+                int firstValue = 0, secondValue = 0;
+                int.TryParse(textBox2.Text, out firstValue);
+                int.TryParse(textBox3.Text, out secondValue);
+                if (firstValue > secondValue)
+                {
+                    textBox2.BackColor = Color.LightCoral;
+                }
+            }
+        }
+
+        private void CheckHeight()
+        {
+            if ((textBox4.Text != null) && (textBox5.Text != null))
+            {
+                int firstValue = 0, secondValue = 0;
+                int.TryParse(textBox4.Text, out firstValue);
+                int.TryParse(textBox5.Text, out secondValue);
+                if (firstValue > secondValue)
+                {
+                    textBox4.BackColor = Color.LightCoral;
+                }
+            }
+        }
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             int value = 0;
@@ -42,7 +70,6 @@ namespace ChessRook
             {
                 textBox1.BackColor = Color.LightCoral;
                 button1.Enabled = false;
-
             }
             else
             {
@@ -66,6 +93,7 @@ namespace ChessRook
                 textBox2.BackColor = Color.LightGreen;
             }
             CheckColor();
+            CheckDiameter();
         }
 
         private void textBox3_TextChanged(object sender, EventArgs e)
@@ -83,6 +111,7 @@ namespace ChessRook
                 textBox3.BackColor = Color.LightGreen;
             }
             CheckColor();
+            CheckDiameter();
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
@@ -100,6 +129,7 @@ namespace ChessRook
                 textBox4.BackColor = Color.LightGreen;
             }
             CheckColor();
+            CheckHeight();
         }
 
         private void textBox5_TextChanged(object sender, EventArgs e)
@@ -117,6 +147,7 @@ namespace ChessRook
                 textBox5.BackColor = Color.LightGreen;
             }
             CheckColor();
+            CheckHeight();
         }
 
         private void button1_Click(object sender, EventArgs e)

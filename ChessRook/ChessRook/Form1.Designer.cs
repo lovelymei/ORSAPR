@@ -48,7 +48,6 @@ namespace ChessRook
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -56,7 +55,7 @@ namespace ChessRook
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(24, 35);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 29);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(122, 120);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -66,7 +65,7 @@ namespace ChessRook
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(24, 207);
+            this.label1.Location = new System.Drawing.Point(12, 198);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(112, 15);
             this.label1.TabIndex = 1;
@@ -75,7 +74,7 @@ namespace ChessRook
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(24, 241);
+            this.label2.Location = new System.Drawing.Point(12, 232);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(186, 15);
             this.label2.TabIndex = 2;
@@ -84,7 +83,7 @@ namespace ChessRook
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(24, 275);
+            this.label3.Location = new System.Drawing.Point(12, 266);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(189, 15);
             this.label3.TabIndex = 3;
@@ -93,7 +92,7 @@ namespace ChessRook
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(24, 309);
+            this.label4.Location = new System.Drawing.Point(12, 300);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(179, 15);
             this.label4.TabIndex = 4;
@@ -102,7 +101,7 @@ namespace ChessRook
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(24, 343);
+            this.label5.Location = new System.Drawing.Point(12, 334);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(179, 15);
             this.label5.TabIndex = 5;
@@ -110,7 +109,7 @@ namespace ChessRook
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(219, 201);
+            this.textBox1.Location = new System.Drawing.Point(232, 201);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 23);
             this.textBox1.TabIndex = 6;
@@ -118,7 +117,7 @@ namespace ChessRook
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(219, 234);
+            this.textBox2.Location = new System.Drawing.Point(232, 234);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(100, 23);
             this.textBox2.TabIndex = 7;
@@ -126,7 +125,7 @@ namespace ChessRook
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(219, 267);
+            this.textBox3.Location = new System.Drawing.Point(232, 267);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(100, 23);
             this.textBox3.TabIndex = 8;
@@ -134,7 +133,7 @@ namespace ChessRook
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(219, 300);
+            this.textBox4.Location = new System.Drawing.Point(232, 300);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(100, 23);
             this.textBox4.TabIndex = 9;
@@ -142,7 +141,7 @@ namespace ChessRook
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(219, 333);
+            this.textBox5.Location = new System.Drawing.Point(232, 333);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(100, 23);
             this.textBox5.TabIndex = 10;
@@ -150,7 +149,7 @@ namespace ChessRook
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(219, 35);
+            this.pictureBox2.Location = new System.Drawing.Point(195, 29);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(122, 120);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -159,7 +158,7 @@ namespace ChessRook
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Location = new System.Drawing.Point(401, 35);
+            this.pictureBox3.Location = new System.Drawing.Point(378, 29);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(122, 120);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -169,7 +168,7 @@ namespace ChessRook
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(347, 206);
+            this.label6.Location = new System.Drawing.Point(374, 202);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(113, 15);
             this.label6.TabIndex = 13;
@@ -178,7 +177,7 @@ namespace ChessRook
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(347, 238);
+            this.label7.Location = new System.Drawing.Point(374, 234);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(92, 15);
             this.label7.TabIndex = 14;
@@ -187,7 +186,7 @@ namespace ChessRook
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(347, 270);
+            this.label8.Location = new System.Drawing.Point(374, 266);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(92, 15);
             this.label8.TabIndex = 15;
@@ -196,7 +195,7 @@ namespace ChessRook
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(347, 302);
+            this.label9.Location = new System.Drawing.Point(374, 298);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(92, 15);
             this.label9.TabIndex = 16;
@@ -205,7 +204,7 @@ namespace ChessRook
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(347, 334);
+            this.label10.Location = new System.Drawing.Point(374, 330);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(95, 15);
             this.label10.TabIndex = 17;
@@ -213,7 +212,7 @@ namespace ChessRook
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(219, 385);
+            this.button1.Location = new System.Drawing.Point(232, 385);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(100, 23);
             this.button1.TabIndex = 18;
@@ -221,21 +220,11 @@ namespace ChessRook
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(155, 174);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(234, 15);
-            this.label11.TabIndex = 19;
-            this.label11.Text = "Важно! Значения вводятся в милиметрах";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(552, 420);
-            this.Controls.Add(this.label11);
+            this.ClientSize = new System.Drawing.Size(513, 420);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
@@ -287,7 +276,6 @@ namespace ChessRook
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label11;
     }
 }
 
