@@ -15,9 +15,9 @@ namespace ChessRook
         public Form1()
         {
             InitializeComponent();
-            //pictureBox1.Image = Image.FromFile("C:\\Users\\user\\source\\repos\\ORSAPR\\images\\1.png");
-            //pictureBox2.Image = Image.FromFile("C:\\Users\\user\\source\\repos\\ORSAPR\\images\\2.png");
-            //pictureBox3.Image = Image.FromFile("C:\\Users\\user\\source\\repos\\ORSAPR\\images\\3.png");
+            pictureBox1.Image = Image.FromFile("C:\\Users\\user\\source\\repos\\ORSAPR\\ChessRook\\1.png");
+            pictureBox2.Image = Image.FromFile("C:\\Users\\user\\source\\repos\\ORSAPR\\ChessRook\\2.png");
+            pictureBox3.Image = Image.FromFile("C:\\Users\\user\\source\\repos\\ORSAPR\\ChessRook\\3.png");
             button1.Enabled = false;
         }
 
@@ -48,6 +48,24 @@ namespace ChessRook
             }
         }
 
+        private void CheckNull()
+        {
+            if (textBox1.Text == "")
+                textBox1.BackColor = Color.White;
+
+            if (textBox2.Text == "")
+                textBox2.BackColor = Color.White;
+
+            if (textBox3.Text == "")
+                textBox3.BackColor = Color.White;
+
+            if (textBox4.Text == "")
+                textBox4.BackColor = Color.White;
+
+            if (textBox5.Text == "")
+                textBox5.BackColor = Color.White;
+        }
+
         private void CheckHeight()
         {
             if ((textBox4.Text != null) && (textBox5.Text != null))
@@ -76,12 +94,14 @@ namespace ChessRook
                 textBox1.BackColor = Color.LightGreen;
             }
             CheckColor();
+            CheckNull();
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
             int value;
             int.TryParse(textBox2.Text, out value);
+            
 
             if ((value > 500) || (value < 5))
             {
@@ -94,6 +114,7 @@ namespace ChessRook
             }
             CheckColor();
             CheckDiameter();
+            CheckNull();
         }
 
         private void textBox3_TextChanged(object sender, EventArgs e)
@@ -112,6 +133,7 @@ namespace ChessRook
             }
             CheckColor();
             CheckDiameter();
+            CheckNull();
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
@@ -130,6 +152,7 @@ namespace ChessRook
             }
             CheckColor();
             CheckHeight();
+            CheckNull();
         }
 
         private void textBox5_TextChanged(object sender, EventArgs e)
@@ -148,6 +171,7 @@ namespace ChessRook
             }
             CheckColor();
             CheckHeight();
+            CheckNull();
         }
 
         private void button1_Click(object sender, EventArgs e)

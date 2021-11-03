@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\ChessRook",
+    "\\ChessRook\\ChessRook",
+    "\\docs"
   ],
-  "SelectedNode": "\\ChessRook.sln",
+  "SelectedNode": "\\ChessRook\\ChessRook\\Form1.cs",
   "PreviewInSolutionExplorer": false
 }
