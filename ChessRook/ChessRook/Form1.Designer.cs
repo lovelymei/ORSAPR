@@ -114,7 +114,7 @@ namespace ChessRook
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(237, 172);
+            this.textBox1.Location = new System.Drawing.Point(237, 176);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(55, 23);
             this.textBox1.TabIndex = 6;
@@ -122,7 +122,7 @@ namespace ChessRook
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(237, 204);
+            this.textBox2.Location = new System.Drawing.Point(237, 208);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(55, 23);
             this.textBox2.TabIndex = 7;
@@ -131,7 +131,7 @@ namespace ChessRook
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(237, 236);
+            this.textBox3.Location = new System.Drawing.Point(237, 240);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(55, 23);
             this.textBox3.TabIndex = 8;
@@ -140,7 +140,7 @@ namespace ChessRook
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(237, 268);
+            this.textBox4.Location = new System.Drawing.Point(237, 272);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(55, 23);
             this.textBox4.TabIndex = 9;
@@ -149,7 +149,7 @@ namespace ChessRook
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(237, 300);
+            this.textBox5.Location = new System.Drawing.Point(237, 304);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(55, 23);
             this.textBox5.TabIndex = 10;
