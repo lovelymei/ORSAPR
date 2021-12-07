@@ -1,17 +1,18 @@
-﻿namespace ChessRook
+﻿using Kompas6API5;
+using Kompas6Constants3D;
+
+namespace ChessRook
 {
     class ModelCreator
     {
-        //TODO: изменить диаграмму 1. ksDocument3DNotify7 поменять на ksDocument3D
-        //2. из ModelCreator удалить kompasObject, если он окажется ненужным все-таки
-        //TODO: разобраться с ksDocument3DNotify7 - кажется, надо что-то другое
-        //private ksDocument3DNotify7 _document3D;
-
         private RookInfo _rookInfo;
-        public ksDocument3D Document3D;
 
-        //что нужно подключить, чтобы это заработало?
-        //private KompasObject _kompasObject;
+        public ksDocument3D Document3D;
+        private ksDocument2D _document2D;
+        private ksPart _part;
+        private ksEntity _plane;
+        private ksEntity _sketch;
+        private ksSketchDefinition _sketchDefinition;
 
         ModelCreator(RookInfo rookInfo)
         {
@@ -21,5 +22,69 @@
             _rookInfo.UpperBaseDiameter = rookInfo.UpperBaseDiameter;
             _rookInfo.UpperBaseHeight = rookInfo.UpperBaseHeight;
         }
+
+        public void CreateSketch(RookInfo rook)
+        {
+            //плоскость XOZ
+            _plane = _part.GetDefaultEntity((short)Obj3dType.o3d_planeXOZ);
+            _sketch = _part.NewEntity((short)Obj3dType.o3d_sketch);
+            _sketchDefinition = _sketch.GetDefinition();
+            _sketchDefinition.SetPlane(_plane);
+
+            _sketch.Create();
+
+            _document2D = _sketchDefinition.BeginEdit();
+
+            //провести дугу (x4,y4) - (x2,y1)
+            //x4 - 2 * _rookInfo.UpperBaseDiameter / 5
+            //y4 - _rookInfo.FullHeight - _rookInfo.UpperBaseHeight * 2
+            //x2 - 2 * _rookInfo.LowerBaseDiameter / 5
+            //y1 - _rookInfo.LowerBaseHeight
+            //нижнее основание (x1,y1,x2,y2)
+            _document2D.ksLineSeg(0, 0, _rookInfo.LowerBaseDiameter / 2, 0, 1);
+            //высота нижнего основания
+            _document2D.ksLineSeg(
+                _rookInfo.LowerBaseDiameter / 2, 
+                0, 
+                _rookInfo.LowerBaseDiameter / 2, 
+                _rookInfo.LowerBaseHeight, 
+                1);
+
+            //отступ снизу
+            _document2D.ksLineSeg(
+                _rookInfo.LowerBaseDiameter / 2,
+                _rookInfo.LowerBaseHeight,
+                2 * _rookInfo.LowerBaseDiameter / 5,
+                _rookInfo.LowerBaseHeight,
+                1
+                );
+
+            //отступ сверху
+            _document2D.ksLineSeg(
+                _rookInfo.UpperBaseDiameter / 2,
+                _rookInfo.FullHeight - _rookInfo.UpperBaseHeight * 2,
+                2 * _rookInfo.UpperBaseDiameter / 5,
+                _rookInfo.FullHeight - _rookInfo.UpperBaseHeight * 2,
+                1
+                );
+            //верхнее основание
+            _document2D.ksLineSeg(
+                0,
+                _rookInfo.FullHeight - _rookInfo.UpperBaseHeight,
+                _rookInfo.UpperBaseDiameter / 2,
+                _rookInfo.FullHeight - _rookInfo.UpperBaseHeight,
+                1);
+
+            //высота верхнего основания
+            _document2D.ksLineSeg(
+                _rookInfo.UpperBaseDiameter / 2,
+                _rookInfo.FullHeight - _rookInfo.UpperBaseHeight, 
+                _rookInfo.UpperBaseDiameter / 2,
+                _rookInfo.FullHeight - _rookInfo.UpperBaseHeight*2, 
+                1);
+
+        }
+
+
     }
 }

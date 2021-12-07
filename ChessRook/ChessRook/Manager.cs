@@ -1,4 +1,6 @@
 ﻿
+using Kompas6API5;
+
 namespace ChessRook
 {
     class Manager
