@@ -1,4 +1,5 @@
 ﻿using Kompas6API5;
+using System;
 using System.Runtime.InteropServices;
 
 namespace ChessRook
@@ -16,7 +17,16 @@ namespace ChessRook
 
         public void OpenKompas3D()
         {
-
+            if (!IsActiveKompas3D(out var kompasObject))
+            {
+                if (!CreateKompasInstance(out kompasObject))
+                {
+                    throw new ArgumentException("Не получилось создать новый экземпляр КОМПАС 3Д");
+                }
+            }
+            kompasObject.Visible = true;
+            kompasObject.ActivateControllerAPI();
+            _kompasObject = kompasObject;
         }
 
         private bool IsActiveKompas3D(out KompasObject kompasObject)
@@ -27,6 +37,21 @@ namespace ChessRook
                 return true;
             }
             catch (COMException)
+            {
+                kompasObject = null;
+                return false;
+            }
+        }
+
+        private bool CreateKompasInstance(out KompasObject kompasObject)
+        {
+            try
+            {
+                var type = Type.GetTypeFromProgID("KOMPAS.Application.5");
+                kompasObject = (KompasObject)Activator.CreateInstance(type);
+                return true;
+            }
+            catch(COMException)
             {
                 kompasObject = null;
                 return false;
