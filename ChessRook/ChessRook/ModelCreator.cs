@@ -83,6 +83,16 @@ namespace ChessRook
                 _rookInfo.FullHeight - _rookInfo.UpperBaseHeight*2, 
                 1);
 
+            //дуга  через три точки
+            _document2D.ksArcBy3Points(
+                2 * _rookInfo.UpperBaseDiameter / 5,
+                _rookInfo.FullHeight - _rookInfo.UpperBaseHeight * 2,
+                (2 * _rookInfo.LowerBaseDiameter / 5 - 2 * _rookInfo.UpperBaseDiameter / 5)/2 + 2 * _rookInfo.LowerBaseDiameter / 5,
+                (_rookInfo.FullHeight - _rookInfo.UpperBaseHeight * 2 - _rookInfo.LowerBaseHeight)/2 + _rookInfo.LowerBaseHeight,
+                2 * _rookInfo.LowerBaseDiameter / 5,
+                _rookInfo.LowerBaseHeight,
+                1
+                );
         }
 
 
