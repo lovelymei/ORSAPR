@@ -36,11 +36,11 @@ namespace ChessRookUI
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.fullHeightTextBox = new System.Windows.Forms.TextBox();
+            this.lowerDiameterTextBox = new System.Windows.Forms.TextBox();
+            this.upperDiameterTextBox = new System.Windows.Forms.TextBox();
+            this.upperHeightTextBox = new System.Windows.Forms.TextBox();
+            this.lowerHeightTextBox = new System.Windows.Forms.TextBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -48,7 +48,7 @@ namespace ChessRookUI
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buildButton = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
             this.toolTip3 = new System.Windows.Forms.ToolTip(this.components);
@@ -112,49 +112,49 @@ namespace ChessRookUI
             this.label5.TabIndex = 5;
             this.label5.Text = "Высота верхнего основания (E)";
             // 
-            // textBox1
+            // fullHeightTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(237, 176);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(55, 23);
-            this.textBox1.TabIndex = 6;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.fullHeightTextBox.Location = new System.Drawing.Point(237, 176);
+            this.fullHeightTextBox.Name = "fullHeightTextBox";
+            this.fullHeightTextBox.Size = new System.Drawing.Size(55, 23);
+            this.fullHeightTextBox.TabIndex = 6;
+            this.fullHeightTextBox.TextChanged += new System.EventHandler(this.fullHeightTextBox_TextChanged);
             // 
-            // textBox2
+            // lowerDiameterTextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(237, 208);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(55, 23);
-            this.textBox2.TabIndex = 7;
-            this.toolTip1.SetToolTip(this.textBox2, "Эта величина должна быть меньше величины С");
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.lowerDiameterTextBox.Location = new System.Drawing.Point(237, 208);
+            this.lowerDiameterTextBox.Name = "lowerDiameterTextBox";
+            this.lowerDiameterTextBox.Size = new System.Drawing.Size(55, 23);
+            this.lowerDiameterTextBox.TabIndex = 7;
+            this.toolTip1.SetToolTip(this.lowerDiameterTextBox, "Эта величина должна быть меньше величины С");
+            this.lowerDiameterTextBox.TextChanged += new System.EventHandler(this.lowerDiameterTextBox_TextChanged);
             // 
-            // textBox3
+            // upperDiameterTextBox
             // 
-            this.textBox3.Location = new System.Drawing.Point(237, 240);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(55, 23);
-            this.textBox3.TabIndex = 8;
-            this.toolTip2.SetToolTip(this.textBox3, "Эта величина должна быть больше величины В");
-            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            this.upperDiameterTextBox.Location = new System.Drawing.Point(237, 240);
+            this.upperDiameterTextBox.Name = "upperDiameterTextBox";
+            this.upperDiameterTextBox.Size = new System.Drawing.Size(55, 23);
+            this.upperDiameterTextBox.TabIndex = 8;
+            this.toolTip2.SetToolTip(this.upperDiameterTextBox, "Эта величина должна быть больше величины В");
+            this.upperDiameterTextBox.TextChanged += new System.EventHandler(this.upperDiameterTextBox_TextChanged);
             // 
-            // textBox4
+            // upperHeightTextBox
             // 
-            this.textBox4.Location = new System.Drawing.Point(237, 272);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(55, 23);
-            this.textBox4.TabIndex = 9;
-            this.toolTip3.SetToolTip(this.textBox4, "Эта величина должна быть меньше величины E");
-            this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
+            this.upperHeightTextBox.Location = new System.Drawing.Point(237, 272);
+            this.upperHeightTextBox.Name = "upperHeightTextBox";
+            this.upperHeightTextBox.Size = new System.Drawing.Size(55, 23);
+            this.upperHeightTextBox.TabIndex = 9;
+            this.toolTip3.SetToolTip(this.upperHeightTextBox, "Эта величина должна быть меньше величины E");
+            this.upperHeightTextBox.TextChanged += new System.EventHandler(this.upperHeightTextBox_TextChanged);
             // 
-            // textBox5
+            // lowerHeightTextBox
             // 
-            this.textBox5.Location = new System.Drawing.Point(237, 304);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(55, 23);
-            this.textBox5.TabIndex = 10;
-            this.toolTip4.SetToolTip(this.textBox5, "Эта величина должна быть больше величины D");
-            this.textBox5.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
+            this.lowerHeightTextBox.Location = new System.Drawing.Point(237, 304);
+            this.lowerHeightTextBox.Name = "lowerHeightTextBox";
+            this.lowerHeightTextBox.Size = new System.Drawing.Size(55, 23);
+            this.lowerHeightTextBox.TabIndex = 10;
+            this.toolTip4.SetToolTip(this.lowerHeightTextBox, "Эта величина должна быть больше величины D");
+            this.lowerHeightTextBox.TextChanged += new System.EventHandler(this.lowerHeightTextBox_TextChanged);
             // 
             // pictureBox2
             // 
@@ -219,15 +219,15 @@ namespace ChessRookUI
             this.label10.TabIndex = 17;
             this.label10.Text = "(3 мм - 100 мм )";
             // 
-            // button1
+            // buildButton
             // 
-            this.button1.Location = new System.Drawing.Point(350, 345);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 23);
-            this.button1.TabIndex = 18;
-            this.button1.Text = "Построить";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.buildButton.Location = new System.Drawing.Point(350, 345);
+            this.buildButton.Name = "buildButton";
+            this.buildButton.Size = new System.Drawing.Size(100, 23);
+            this.buildButton.TabIndex = 18;
+            this.buildButton.Text = "Построить";
+            this.buildButton.UseVisualStyleBackColor = true;
+            this.buildButton.Click += new System.EventHandler(this.buildButton_Click);
             // 
             // toolTip1
             // 
@@ -241,7 +241,7 @@ namespace ChessRookUI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(464, 380);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buildButton);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
@@ -249,11 +249,11 @@ namespace ChessRookUI
             this.Controls.Add(this.label6);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.lowerHeightTextBox);
+            this.Controls.Add(this.upperHeightTextBox);
+            this.Controls.Add(this.upperDiameterTextBox);
+            this.Controls.Add(this.lowerDiameterTextBox);
+            this.Controls.Add(this.fullHeightTextBox);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -279,11 +279,11 @@ namespace ChessRookUI
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox fullHeightTextBox;
+        private System.Windows.Forms.TextBox lowerDiameterTextBox;
+        private System.Windows.Forms.TextBox upperDiameterTextBox;
+        private System.Windows.Forms.TextBox upperHeightTextBox;
+        private System.Windows.Forms.TextBox lowerHeightTextBox;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label label6;
@@ -291,7 +291,7 @@ namespace ChessRookUI
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buildButton;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.ToolTip toolTip2;
         private System.Windows.Forms.ToolTip toolTip3;

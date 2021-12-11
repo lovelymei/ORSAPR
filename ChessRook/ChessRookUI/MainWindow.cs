@@ -16,7 +16,7 @@ namespace ChessRookUI
             pictureBox1.Image = Image.FromFile("C:\\Users\\user\\source\\repos\\ORSAPR\\ChessRook\\1.png");
             pictureBox2.Image = Image.FromFile("C:\\Users\\user\\source\\repos\\ORSAPR\\ChessRook\\2.png");
             pictureBox3.Image = Image.FromFile("C:\\Users\\user\\source\\repos\\ORSAPR\\ChessRook\\3.png");
-            button1.Enabled = false;
+            buildButton.Enabled = false;
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -25,170 +25,172 @@ namespace ChessRookUI
 
         private void CheckColor()
         {
-            if ((textBox1.BackColor == Color.LightGreen) && (textBox2.BackColor == Color.LightGreen)
-                && (textBox3.BackColor == Color.LightGreen) && (textBox4.BackColor == Color.LightGreen)
-                && (textBox5.BackColor == Color.LightGreen))
-                button1.Enabled = true;
+            if ((fullHeightTextBox.BackColor == Color.LightGreen) && (lowerDiameterTextBox.BackColor == Color.LightGreen)
+                && (upperDiameterTextBox.BackColor == Color.LightGreen) && (upperHeightTextBox.BackColor == Color.LightGreen)
+                && (lowerHeightTextBox.BackColor == Color.LightGreen))
+                buildButton.Enabled = true;
         }
 
 
         private void CheckDiameter()
         {
-            if ((textBox2.Text != null) && (textBox3.Text != null))
+            if ((lowerDiameterTextBox.Text != null) && (upperDiameterTextBox.Text != null))
             {
                 int firstValue = 0, secondValue = 0;
-                int.TryParse(textBox2.Text, out firstValue);
-                int.TryParse(textBox3.Text, out secondValue);
+                int.TryParse(lowerDiameterTextBox.Text, out firstValue);
+                int.TryParse(upperDiameterTextBox.Text, out secondValue);
                 if (firstValue > secondValue)
                 {
-                    textBox2.BackColor = Color.LightCoral;
+                    lowerDiameterTextBox.BackColor = Color.LightCoral;
                 }
             }
         }
 
         private void CheckNull()
         {
-            if (textBox1.Text == "")
-                textBox1.BackColor = Color.White;
+            if (fullHeightTextBox.Text == "")
+                fullHeightTextBox.BackColor = Color.White;
 
-            if (textBox2.Text == "")
-                textBox2.BackColor = Color.White;
+            if (lowerDiameterTextBox.Text == "")
+                lowerDiameterTextBox.BackColor = Color.White;
 
-            if (textBox3.Text == "")
-                textBox3.BackColor = Color.White;
+            if (upperDiameterTextBox.Text == "")
+                upperDiameterTextBox.BackColor = Color.White;
 
-            if (textBox4.Text == "")
-                textBox4.BackColor = Color.White;
+            if (upperHeightTextBox.Text == "")
+                upperHeightTextBox.BackColor = Color.White;
 
-            if (textBox5.Text == "")
-                textBox5.BackColor = Color.White;
+            if (lowerHeightTextBox.Text == "")
+                lowerHeightTextBox.BackColor = Color.White;
         }
 
         private void CheckHeight()
         {
-            if ((textBox4.Text != null) && (textBox5.Text != null))
+            if ((upperHeightTextBox.Text != null) && (lowerHeightTextBox.Text != null))
             {
                 int firstValue = 0, secondValue = 0;
-                int.TryParse(textBox4.Text, out firstValue);
-                int.TryParse(textBox5.Text, out secondValue);
+                int.TryParse(upperHeightTextBox.Text, out firstValue);
+                int.TryParse(lowerHeightTextBox.Text, out secondValue);
                 if (firstValue > secondValue)
                 {
-                    textBox4.BackColor = Color.LightCoral;
+                    upperHeightTextBox.BackColor = Color.LightCoral;
                 }
             }
         }
-        private void textBox1_TextChanged(object sender, EventArgs e)
+
+        private void fullHeightTextBox_TextChanged(object sender, EventArgs e)
         {
             int value = 0;
-            int.TryParse(textBox1.Text, out value); 
+            int.TryParse(fullHeightTextBox.Text, out value);
 
             if ((value > 10000) || (value < 10))
             {
-                textBox1.BackColor = Color.LightCoral;
-                button1.Enabled = false;
+                fullHeightTextBox.BackColor = Color.LightCoral;
+                buildButton.Enabled = false;
             }
             else
             {
-                textBox1.BackColor = Color.LightGreen;
+                fullHeightTextBox.BackColor = Color.LightGreen;
             }
             CheckColor();
             CheckNull();
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        private void lowerDiameterTextBox_TextChanged(object sender, EventArgs e)
         {
             int value;
-            int.TryParse(textBox2.Text, out value);
-            
+            int.TryParse(lowerDiameterTextBox.Text, out value);
+
 
             if ((value > 500) || (value < 5))
             {
-                textBox2.BackColor = Color.LightCoral;
-                button1.Enabled = false;
+                lowerDiameterTextBox.BackColor = Color.LightCoral;
+                buildButton.Enabled = false;
             }
             else
             {
-                textBox2.BackColor = Color.LightGreen;
+                lowerDiameterTextBox.BackColor = Color.LightGreen;
             }
             CheckColor();
             CheckDiameter();
             CheckNull();
         }
 
-        private void textBox3_TextChanged(object sender, EventArgs e)
+        private void upperDiameterTextBox_TextChanged(object sender, EventArgs e)
         {
             int value;
-            int.TryParse(textBox3.Text, out value);
+            int.TryParse(upperDiameterTextBox.Text, out value);
 
             if ((value > 100) || (value < 3))
             {
-                textBox3.BackColor = Color.LightCoral;
-                button1.Enabled = false;
+                upperDiameterTextBox.BackColor = Color.LightCoral;
+                buildButton.Enabled = false;
             }
             else
             {
-                textBox3.BackColor = Color.LightGreen;
+                upperDiameterTextBox.BackColor = Color.LightGreen;
             }
             CheckColor();
             CheckDiameter();
             CheckNull();
         }
 
-        private void textBox4_TextChanged(object sender, EventArgs e)
+        private void upperHeightTextBox_TextChanged(object sender, EventArgs e)
         {
+
             int value;
-            int.TryParse(textBox4.Text, out value);
+            int.TryParse(upperHeightTextBox.Text, out value);
 
             if ((value > 150) || (value < 2))
             {
-                textBox4.BackColor = Color.LightCoral;
-                button1.Enabled = false;
+                upperHeightTextBox.BackColor = Color.LightCoral;
+                buildButton.Enabled = false;
             }
             else
             {
-                textBox4.BackColor = Color.LightGreen;
+                upperHeightTextBox.BackColor = Color.LightGreen;
             }
             CheckColor();
             CheckHeight();
             CheckNull();
         }
 
-        private void textBox5_TextChanged(object sender, EventArgs e)
+        private void lowerHeightTextBox_TextChanged(object sender, EventArgs e)
         {
             int value;
-            int.TryParse(textBox5.Text, out value);
+            int.TryParse(lowerHeightTextBox.Text, out value);
 
             if ((value > 100) || (value < 3))
             {
-                textBox5.BackColor = Color.LightCoral;
-                button1.Enabled = false;
+                lowerHeightTextBox.BackColor = Color.LightCoral;
+                buildButton.Enabled = false;
             }
             else
             {
-                textBox5.BackColor = Color.LightGreen;
+                lowerHeightTextBox.BackColor = Color.LightGreen;
             }
             CheckColor();
             CheckHeight();
             CheckNull();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buildButton_Click(object sender, EventArgs e)
         {
             int textFirst;
-            int.TryParse(textBox2.Text, out textFirst);
+            int.TryParse(lowerDiameterTextBox.Text, out textFirst);
             int textSecond;
-            int.TryParse(textBox3.Text, out textSecond);
+            int.TryParse(upperDiameterTextBox.Text, out textSecond);
             if (textFirst > textSecond)
             {
                 MessageBox.Show("Диаметр нижнего основания не может быть больше диаметра верхнего", "Ошибка валидации", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
 
-            int.TryParse(textBox4.Text, out textFirst);
-            int.TryParse(textBox5.Text, out textSecond);
+            int.TryParse(upperHeightTextBox.Text, out textFirst);
+            int.TryParse(lowerHeightTextBox.Text, out textSecond);
             if (textFirst > textSecond)
             {
-                MessageBox.Show("Высота нижнего основания не может быть больше высоты верхнего","Ошибка валидации", MessageBoxButtons.OK,
+                MessageBox.Show("Высота нижнего основания не может быть больше высоты верхнего", "Ошибка валидации", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
 
@@ -197,11 +199,9 @@ namespace ChessRookUI
             //    FullHeight = int.Parse(textBox1.Text),
             //    LowerBaseDiameter
             //};
-            
+
             _manager = new Manager();
             _manager.InitializeComponent(_rookInfo);
         }
-
-
     }
 }
