@@ -1,7 +1,7 @@
 ﻿
 namespace ChessRook
 {
-    class RookInfo
+    public class RookInfo
     {
         private int _fullHeight;
         private int _upperBaseHeight;

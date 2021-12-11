@@ -3,7 +3,7 @@ using Kompas6API5;
 
 namespace ChessRook
 {
-    class Manager
+    public class Manager
     {
         private ModelCreator _createModel;
 

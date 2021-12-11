@@ -7,12 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ChessRook;
 
-namespace ChessRook
+namespace ChessRookUI
 {
-    public partial class Form1 : Form
+    public partial class MainWindow : Form
     {
-        public Form1()
+        private RookInfo _rookInfo;
+        private Manager _manager;
+
+        public MainWindow()
         {
             InitializeComponent();
             pictureBox1.Image = Image.FromFile("C:\\Users\\user\\source\\repos\\ORSAPR\\ChessRook\\1.png");
@@ -20,8 +24,7 @@ namespace ChessRook
             pictureBox3.Image = Image.FromFile("C:\\Users\\user\\source\\repos\\ORSAPR\\ChessRook\\3.png");
             button1.Enabled = false;
         }
-
-        private void Form1_Load(object sender, EventArgs e)
+        private void MainForm_Load(object sender, EventArgs e)
         {
 
         }
@@ -33,6 +36,7 @@ namespace ChessRook
                 && (textBox5.BackColor == Color.LightGreen))
                 button1.Enabled = true;
         }
+
 
         private void CheckDiameter()
         {
@@ -193,6 +197,17 @@ namespace ChessRook
                 MessageBox.Show("Высота нижнего основания не может быть больше высоты верхнего","Ошибка валидации", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
+
+            //_rookInfo = new RookInfo
+            //{
+            //    FullHeight = int.Parse(textBox1.Text),
+            //    LowerBaseDiameter
+            //};
+            
+            _manager = new Manager();
+            _manager.InitializeComponent(_rookInfo);
         }
+
+
     }
 }

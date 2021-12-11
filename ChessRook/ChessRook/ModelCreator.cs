@@ -93,6 +93,8 @@ namespace ChessRook
                 _rookInfo.LowerBaseHeight,
                 1
                 );
+
+
         }
 
 
