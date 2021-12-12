@@ -17,46 +17,19 @@ namespace ChessRook
 
         public void OpenKompas3D()
         {
-            if (!IsActiveKompas3D(out var kompasObject))
+            if (_kompasObject == null)
             {
-                if (!CreateKompasInstance(out kompasObject))
-                {
-                    throw new ArgumentException("Не получилось создать новый экземпляр КОМПАС 3Д");
-                }
+                Type t = Type.GetTypeFromProgID("KOMPAS.Application.5");
+                _kompasObject = (KompasObject)Activator.CreateInstance(t);
             }
-            kompasObject.Visible = true;
-            kompasObject.ActivateControllerAPI();
-            _kompasObject = kompasObject;
-        }
 
-        private bool IsActiveKompas3D(out KompasObject kompasObject)
-        {
-            try
+            if (_kompasObject != null)
             {
-                kompasObject = (KompasObject)Marshal.GetActiveObject("KOMPAS.Application.5");
-                return true;
-            }
-            catch (COMException)
-            {
-                kompasObject = null;
-                return false;
+                _kompasObject.Visible = true;
+                _kompasObject.ActivateControllerAPI();
             }
         }
 
-        private bool CreateKompasInstance(out KompasObject kompasObject)
-        {
-            try
-            {
-                var type = Type.GetTypeFromProgID("KOMPAS.Application.5");
-                kompasObject = (KompasObject)Activator.CreateInstance(type);
-                return true;
-            }
-            catch(COMException)
-            {
-                kompasObject = null;
-                return false;
-            }
-        }
 
         public KompasConnector() 
         {
