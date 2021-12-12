@@ -3,11 +3,6 @@ using Kompas6Constants3D;
 
 namespace ChessRook
 {
-    public class Point
-    {
-        public int x;
-        public int y;
-    }
     class ModelCreator
     {
         private RookInfo _rookInfo;
@@ -20,12 +15,6 @@ namespace ChessRook
         private KompasConnector _kompas;
         private Point _point;
 
-        private void CountPoint(int changeX, int changeY)
-        {
-            _point.x += changeX;
-            _point.y += changeY;
-
-        }
         public ModelCreator(RookInfo rookInfo)
         {
             _rookInfo = new RookInfo
@@ -50,10 +39,9 @@ namespace ChessRook
 
         private void DrawLine(int x, int y)
         {
-            var destinationX = x;
-            var destinationY = y;
-            _document2D.ksLineSeg(_point.x, _point.y, _point.x + destinationX, _point.y+destinationY, 1);
-            CountPoint(destinationX, destinationY);
+            _document2D.ksLineSeg(_point.x, _point.y, _point.x + x, _point.y+y, 1);
+            _point.x += x;
+            _point.y += y;
         }
         
         public void CreateSketch(RookInfo rook)
@@ -89,7 +77,6 @@ namespace ChessRook
             DrawLine(_rookInfo.UpperBaseDiameter/10, 0);
             DrawLine(0, _rookInfo.UpperBaseHeight);
             DrawLine(-_point.x, 0);
-
         }
 
     }

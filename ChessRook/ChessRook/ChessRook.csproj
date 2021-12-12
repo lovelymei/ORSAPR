@@ -45,6 +45,7 @@
     <Compile Include="KompasConnector.cs" />
     <Compile Include="Manager.cs" />
     <Compile Include="ModelCreator.cs" />
+    <Compile Include="Point.cs" />
     <Compile Include="RookInfo.cs" />
   </ItemGroup>
   <ItemGroup>
