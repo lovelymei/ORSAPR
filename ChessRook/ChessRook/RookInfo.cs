@@ -15,6 +15,6 @@ namespace ChessRook
         public int UpperBaseDiameter { get { return _upperBaseDiameter; } set { _upperBaseDiameter = value; } }
         public int LowerBaseDiameter { get { return _lowerBaseDiameter; } set { _lowerBaseDiameter = value; } }
 
-        RookInfo() { }
+        public RookInfo() { }
     }
 }

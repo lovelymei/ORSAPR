@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 
 namespace ChessRook
 {
-    class KompasConnector
+    public class KompasConnector
     {
 
         private KompasObject _kompasObject;
@@ -58,6 +58,11 @@ namespace ChessRook
             }
         }
 
-        public KompasConnector() { }
+        public KompasConnector() 
+        {
+            OpenKompas3D();
+
+
+        }
     }
 }

@@ -11,7 +11,8 @@ namespace ChessRook
 
         public void InitializeComponent(RookInfo rookInfo)
         {
-
+            _createModel = new ModelCreator(rookInfo);
+            _createModel.CreateSketch(rookInfo);
 
         }
 

@@ -194,11 +194,20 @@ namespace ChessRookUI
                     MessageBoxIcon.Error);
             }
 
-            //_rookInfo = new RookInfo
-            //{
-            //    FullHeight = int.Parse(textBox1.Text),
-            //    LowerBaseDiameter
-            //};
+
+            BuildRook();
+        }
+
+        private void BuildRook()
+        {
+            _rookInfo = new RookInfo
+            {
+                FullHeight = int.Parse(fullHeightTextBox.Text),
+                LowerBaseDiameter = int.Parse(lowerDiameterTextBox.Text),
+                UpperBaseDiameter = int.Parse(upperDiameterTextBox.Text),
+                LowerBaseHeight = int.Parse(lowerHeightTextBox.Text),
+                UpperBaseHeight = int.Parse(upperHeightTextBox.Text)
+            };
 
             _manager = new Manager();
             _manager.InitializeComponent(_rookInfo);

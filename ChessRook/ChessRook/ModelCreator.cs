@@ -6,25 +6,39 @@ namespace ChessRook
     class ModelCreator
     {
         private RookInfo _rookInfo;
-
-        public ksDocument3D Document3D;
+        private ksDocument3D _document3D;
         private ksDocument2D _document2D;
         private ksPart _part;
         private ksEntity _plane;
         private ksEntity _sketch;
         private ksSketchDefinition _sketchDefinition;
+        private KompasConnector _kompas;
 
-        ModelCreator(RookInfo rookInfo)
+        public ModelCreator(RookInfo rookInfo)
         {
-            _rookInfo.FullHeight = rookInfo.FullHeight;
-            _rookInfo.LowerBaseDiameter = rookInfo.LowerBaseDiameter;
-            _rookInfo.LowerBaseHeight = rookInfo.LowerBaseHeight;
-            _rookInfo.UpperBaseDiameter = rookInfo.UpperBaseDiameter;
-            _rookInfo.UpperBaseHeight = rookInfo.UpperBaseHeight;
+            _rookInfo = new RookInfo
+            {
+                FullHeight = rookInfo.FullHeight,
+                LowerBaseDiameter = rookInfo.LowerBaseDiameter,
+                LowerBaseHeight = rookInfo.LowerBaseHeight,
+                UpperBaseDiameter = rookInfo.UpperBaseDiameter,
+                UpperBaseHeight = rookInfo.UpperBaseHeight
+            };
+        }
+
+        private void CreateDocument()
+        {
+            
+            _document3D = _kompas.KompasObject.Document3D();
+            _document3D.Create(false, true);
+            _document2D = _kompas.KompasObject.Document2D();
+            _part = (ksPart)_document3D.GetPart((int)Part_Type.pTop_Part); 
         }
 
         public void CreateSketch(RookInfo rook)
         {
+            _kompas = new KompasConnector();
+            CreateDocument();
             //плоскость XOZ
             _plane = _part.GetDefaultEntity((short)Obj3dType.o3d_planeXOZ);
             _sketch = _part.NewEntity((short)Obj3dType.o3d_sketch);
@@ -35,12 +49,6 @@ namespace ChessRook
 
             _document2D = _sketchDefinition.BeginEdit();
 
-            //провести дугу (x4,y4) - (x2,y1)
-            //x4 - 2 * _rookInfo.UpperBaseDiameter / 5
-            //y4 - _rookInfo.FullHeight - _rookInfo.UpperBaseHeight * 2
-            //x2 - 2 * _rookInfo.LowerBaseDiameter / 5
-            //y1 - _rookInfo.LowerBaseHeight
-            //нижнее основание (x1,y1,x2,y2)
             _document2D.ksLineSeg(0, 0, _rookInfo.LowerBaseDiameter / 2, 0, 1);
             //высота нижнего основания
             _document2D.ksLineSeg(
@@ -93,8 +101,6 @@ namespace ChessRook
                 _rookInfo.LowerBaseHeight,
                 1
                 );
-
-
         }
 
 
