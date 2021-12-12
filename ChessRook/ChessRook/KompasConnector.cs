@@ -1,7 +1,5 @@
 ﻿using Kompas6API5;
 using System;
-using System.Runtime.InteropServices;
-
 namespace ChessRook
 {
     public class KompasConnector

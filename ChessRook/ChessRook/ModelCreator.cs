@@ -3,6 +3,11 @@ using Kompas6Constants3D;
 
 namespace ChessRook
 {
+    public class Point
+    {
+        public int x;
+        public int y;
+    }
     class ModelCreator
     {
         private RookInfo _rookInfo;
@@ -13,7 +18,14 @@ namespace ChessRook
         private ksEntity _sketch;
         private ksSketchDefinition _sketchDefinition;
         private KompasConnector _kompas;
+        private Point _point;
 
+        private void CountPoint(int changeX, int changeY)
+        {
+            _point.x += changeX;
+            _point.y += changeY;
+
+        }
         public ModelCreator(RookInfo rookInfo)
         {
             _rookInfo = new RookInfo
@@ -24,23 +36,32 @@ namespace ChessRook
                 UpperBaseDiameter = rookInfo.UpperBaseDiameter,
                 UpperBaseHeight = rookInfo.UpperBaseHeight
             };
+            _point = new Point();
         }
 
         private void CreateDocument()
         {
-            
+
             _document3D = _kompas.KompasObject.Document3D();
             _document3D.Create(false, true);
             _document2D = _kompas.KompasObject.Document2D();
-            _part = (ksPart)_document3D.GetPart((int)Part_Type.pTop_Part); 
+            _part = (ksPart)_document3D.GetPart((int)Part_Type.pTop_Part);
         }
 
+        private void DrawLine(int x, int y)
+        {
+            var destinationX = x;
+            var destinationY = y;
+            _document2D.ksLineSeg(_point.x, _point.y, _point.x + destinationX, _point.y+destinationY, 1);
+            CountPoint(destinationX, destinationY);
+        }
+        
         public void CreateSketch(RookInfo rook)
         {
             _kompas = new KompasConnector();
             CreateDocument();
-            //плоскость XOZ
-            _plane = _part.GetDefaultEntity((short)Obj3dType.o3d_planeXOZ);
+
+            _plane = _part.GetDefaultEntity((short)Obj3dType.o3d_planeXOY);
             _sketch = _part.NewEntity((short)Obj3dType.o3d_sketch);
             _sketchDefinition = _sketch.GetDefinition();
             _sketchDefinition.SetPlane(_plane);
@@ -48,61 +69,28 @@ namespace ChessRook
             _sketch.Create();
 
             _document2D = _sketchDefinition.BeginEdit();
+            //самая нижняя горизонтальная линия
+            DrawLine(_rookInfo.LowerBaseDiameter / 2, 0);
+            DrawLine(0, _rookInfo.LowerBaseHeight);
+            DrawLine(-_rookInfo.LowerBaseDiameter / 10, 0);
+            
+            var nextPoint = new Point()
+            {
+                x = 2 * _rookInfo.UpperBaseDiameter / 5,
+                y = _rookInfo.FullHeight - 2 * _rookInfo.UpperBaseHeight,
+            };
+            var changePoint = new Point()
+            {
+                x = nextPoint.x - _point.x,
+                y = nextPoint.y - _point.y
+            };
 
-            _document2D.ksLineSeg(0, 0, _rookInfo.LowerBaseDiameter / 2, 0, 1);
-            //высота нижнего основания
-            _document2D.ksLineSeg(
-                _rookInfo.LowerBaseDiameter / 2, 
-                0, 
-                _rookInfo.LowerBaseDiameter / 2, 
-                _rookInfo.LowerBaseHeight, 
-                1);
+            DrawLine(changePoint.x, changePoint.y);
+            DrawLine(_rookInfo.UpperBaseDiameter/10, 0);
+            DrawLine(0, _rookInfo.UpperBaseHeight);
+            DrawLine(-_point.x, 0);
 
-            //отступ снизу
-            _document2D.ksLineSeg(
-                _rookInfo.LowerBaseDiameter / 2,
-                _rookInfo.LowerBaseHeight,
-                2 * _rookInfo.LowerBaseDiameter / 5,
-                _rookInfo.LowerBaseHeight,
-                1
-                );
-
-            //отступ сверху
-            _document2D.ksLineSeg(
-                _rookInfo.UpperBaseDiameter / 2,
-                _rookInfo.FullHeight - _rookInfo.UpperBaseHeight * 2,
-                2 * _rookInfo.UpperBaseDiameter / 5,
-                _rookInfo.FullHeight - _rookInfo.UpperBaseHeight * 2,
-                1
-                );
-            //верхнее основание
-            _document2D.ksLineSeg(
-                0,
-                _rookInfo.FullHeight - _rookInfo.UpperBaseHeight,
-                _rookInfo.UpperBaseDiameter / 2,
-                _rookInfo.FullHeight - _rookInfo.UpperBaseHeight,
-                1);
-
-            //высота верхнего основания
-            _document2D.ksLineSeg(
-                _rookInfo.UpperBaseDiameter / 2,
-                _rookInfo.FullHeight - _rookInfo.UpperBaseHeight, 
-                _rookInfo.UpperBaseDiameter / 2,
-                _rookInfo.FullHeight - _rookInfo.UpperBaseHeight*2, 
-                1);
-
-            //дуга  через три точки
-            _document2D.ksArcBy3Points(
-                2 * _rookInfo.UpperBaseDiameter / 5,
-                _rookInfo.FullHeight - _rookInfo.UpperBaseHeight * 2,
-                (2 * _rookInfo.LowerBaseDiameter / 5 - 2 * _rookInfo.UpperBaseDiameter / 5)/2 + 2 * _rookInfo.LowerBaseDiameter / 5,
-                (_rookInfo.FullHeight - _rookInfo.UpperBaseHeight * 2 - _rookInfo.LowerBaseHeight)/2 + _rookInfo.LowerBaseHeight,
-                2 * _rookInfo.LowerBaseDiameter / 5,
-                _rookInfo.LowerBaseHeight,
-                1
-                );
         }
-
 
     }
 }
