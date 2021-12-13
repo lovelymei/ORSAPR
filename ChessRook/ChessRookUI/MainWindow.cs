@@ -39,12 +39,16 @@ namespace ChessRookUI
         {
             if ((lowerDiameterTextBox.Text != null) && (upperDiameterTextBox.Text != null))
             {
-                int firstValue = 0, secondValue = 0;
-                int.TryParse(lowerDiameterTextBox.Text, out firstValue);
-                int.TryParse(upperDiameterTextBox.Text, out secondValue);
-                if (firstValue < secondValue)
+                int lower = 0, upper = 0;
+                int.TryParse(lowerDiameterTextBox.Text, out lower);
+                int.TryParse(upperDiameterTextBox.Text, out upper);
+                if (lower < upper)
                 {
                     lowerDiameterTextBox.BackColor = Color.LightCoral;
+                }
+                else
+                {
+                    lowerDiameterTextBox.BackColor = Color.LightGreen;
                 }
             }
         }
@@ -71,12 +75,16 @@ namespace ChessRookUI
         {
             if ((upperHeightTextBox.Text != null) && (lowerHeightTextBox.Text != null))
             {
-                int firstValue = 0, secondValue = 0;
-                int.TryParse(upperHeightTextBox.Text, out firstValue);
-                int.TryParse(lowerHeightTextBox.Text, out secondValue);
-                if (firstValue < secondValue)
+                int upper = 0, lower = 0;
+                int.TryParse(upperHeightTextBox.Text, out upper);
+                int.TryParse(lowerHeightTextBox.Text, out lower);
+                if (upper < lower)
                 {
                     upperHeightTextBox.BackColor = Color.LightCoral;
+                }
+                else
+                {
+                    upperHeightTextBox.BackColor = Color.LightGreen;
                 }
             }
         }
@@ -221,25 +229,6 @@ namespace ChessRookUI
 
         private void buildButton_Click(object sender, EventArgs e)
         {
-            int textFirst;
-            int.TryParse(lowerDiameterTextBox.Text, out textFirst);
-            int textSecond;
-            int.TryParse(upperDiameterTextBox.Text, out textSecond);
-            if (textFirst > textSecond)
-            {
-                MessageBox.Show("Диаметр нижнего основания не может быть больше диаметра верхнего", "Ошибка валидации", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            }
-
-            int.TryParse(upperHeightTextBox.Text, out textFirst);
-            int.TryParse(lowerHeightTextBox.Text, out textSecond);
-            if (textFirst > textSecond)
-            {
-                MessageBox.Show("Высота нижнего основания не может быть больше высоты верхнего", "Ошибка валидации", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            }
-
-
             BuildRook();
         }
 

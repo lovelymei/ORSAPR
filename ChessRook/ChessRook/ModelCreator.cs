@@ -50,6 +50,12 @@ namespace ChessRook
         /// </summary>
         private Point _point;
 
+        private ksEntity _rotatedEntity;
+
+        private ksRotatedParam _rotatedParam;
+
+        private ksBaseRotatedDefinition _rotateDefinition;
+
         /// <summary>
         /// Конструктор
         /// </summary>
@@ -127,7 +133,26 @@ namespace ChessRook
             DrawLine(_rookInfo.UpperBaseDiameter/10, 0);
             DrawLine(0, _rookInfo.UpperBaseHeight);
             DrawLine(-_point.X, 0);
-        }
 
+            /*
+            //ось вращения 
+            _document2D.ksLineSeg(0, -20, 0, 20, 3);
+            //вращение фигуры - вокруг оси Y 
+            _rotatedEntity = (ksEntity)_part.NewEntity((short)Obj3dType.o3d_baseRotated);
+            //интерфейс базовой операции вращения
+            _rotateDefinition = (ksBaseRotatedDefinition)_rotatedEntity.GetDefinition();
+
+            _rotatedParam = (RotatedParam)_rotateDefinition.RotatedParam();
+
+            //направление вращения - в обе стороны
+            _rotatedParam.direction = (int)Direction_Type.dtBoth;
+            _rotatedParam.toroidShape = false;
+
+            _rotateDefinition.SetThinParam(true, (int)Direction_Type.dtBoth, 1, 1);//тонкая стенка в обе стороны
+            _rotateDefinition.SetSideParam(true, 180);
+            _rotateDefinition.SetSketch(_sketch);
+            _rotatedEntity.Create();
+            */
+        }
     }
 }
