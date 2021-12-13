@@ -13,6 +13,7 @@ namespace ChessRookUI
         public MainWindow()
         {
             InitializeComponent();
+            //TODO:
             pictureBox1.Image = Image.FromFile("C:\\Users\\user\\source\\repos\\ORSAPR\\ChessRook\\1.png");
             pictureBox2.Image = Image.FromFile("C:\\Users\\user\\source\\repos\\ORSAPR\\ChessRook\\2.png");
             pictureBox3.Image = Image.FromFile("C:\\Users\\user\\source\\repos\\ORSAPR\\ChessRook\\3.png");
@@ -24,11 +25,12 @@ namespace ChessRookUI
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
-
+            //TODO:
         }
 
         private void CheckColor()
         {
+                //TODO: RSDN
             if ((fullHeightTextBox.BackColor == Color.LightGreen) && (lowerDiameterTextBox.BackColor == Color.LightGreen)
                 && (upperDiameterTextBox.BackColor == Color.LightGreen) && (upperHeightTextBox.BackColor == Color.LightGreen)
                 && (lowerHeightTextBox.BackColor == Color.LightGreen))
@@ -37,6 +39,7 @@ namespace ChessRookUI
 
         private void CheckDiameter()
         {
+            //TODO: Дубль
             if ((lowerDiameterTextBox.Text != null) && (upperDiameterTextBox.Text != null))
             {
                 int lower = 0, upper = 0;
@@ -55,6 +58,7 @@ namespace ChessRookUI
 
         private void CheckNull()
         {
+            //TODO: Поработать со списком.
             if (fullHeightTextBox.Text == "")
                 fullHeightTextBox.BackColor = Color.White;
 
@@ -73,6 +77,7 @@ namespace ChessRookUI
 
         private void CheckHeight()
         {
+            //TODO: Дубль
             if ((upperHeightTextBox.Text != null) && (lowerHeightTextBox.Text != null))
             {
                 int upper = 0, lower = 0;

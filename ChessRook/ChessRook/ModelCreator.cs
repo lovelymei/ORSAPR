@@ -3,8 +3,10 @@ using Kompas6Constants3D;
 
 namespace ChessRook
 {
+        //TODO: RSDN
     class ModelCreator
     {
+        //TODO: Опустить поля в методы
         /// <summary>
         /// данные ладьи
         /// </summary>
@@ -50,6 +52,7 @@ namespace ChessRook
         /// </summary>
         private Point _point;
 
+        //TODO:
         private ksEntity _rotatedEntity;
 
         private ksRotatedParam _rotatedParam;

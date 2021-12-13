@@ -2,6 +2,7 @@
 using System;
 namespace ChessRook
 {
+    //TODO: RSDN
     public class KompasConnector
     {
         /// <summary>

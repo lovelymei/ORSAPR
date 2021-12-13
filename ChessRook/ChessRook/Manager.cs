@@ -3,6 +3,7 @@ using Kompas6API5;
 
 namespace ChessRook
 {
+        //TODO: RSDN
     public class Manager
     {
         /// <summary>
@@ -22,6 +23,8 @@ namespace ChessRook
             _createModel.CreateSketch(rookInfo);
 
         }
+
+            //TODO: 
         /// <summary>
         /// Валидация на то, входит ли значение в заданный диапазон
         /// </summary>

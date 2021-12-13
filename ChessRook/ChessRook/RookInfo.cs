@@ -1,8 +1,10 @@
 ﻿
 namespace ChessRook
 {
+    //TODO:
     public class RookInfo
     {
+        //TODO: XML
         private int _fullHeight;
         private int _upperBaseHeight;
         private int _lowerBaseHeight;
