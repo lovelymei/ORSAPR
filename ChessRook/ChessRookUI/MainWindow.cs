@@ -17,6 +17,8 @@ namespace ChessRookUI
             pictureBox2.Image = Image.FromFile("C:\\Users\\user\\source\\repos\\ORSAPR\\ChessRook\\2.png");
             pictureBox3.Image = Image.FromFile("C:\\Users\\user\\source\\repos\\ORSAPR\\ChessRook\\3.png");
             buildButton.Enabled = false;
+            _rookInfo = new RookInfo();
+            _manager = new Manager();
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -31,7 +33,6 @@ namespace ChessRookUI
                 buildButton.Enabled = true;
         }
 
-
         private void CheckDiameter()
         {
             if ((lowerDiameterTextBox.Text != null) && (upperDiameterTextBox.Text != null))
@@ -39,7 +40,7 @@ namespace ChessRookUI
                 int firstValue = 0, secondValue = 0;
                 int.TryParse(lowerDiameterTextBox.Text, out firstValue);
                 int.TryParse(upperDiameterTextBox.Text, out secondValue);
-                if (firstValue > secondValue)
+                if (firstValue < secondValue)
                 {
                     lowerDiameterTextBox.BackColor = Color.LightCoral;
                 }
@@ -71,7 +72,7 @@ namespace ChessRookUI
                 int firstValue = 0, secondValue = 0;
                 int.TryParse(upperHeightTextBox.Text, out firstValue);
                 int.TryParse(lowerHeightTextBox.Text, out secondValue);
-                if (firstValue > secondValue)
+                if (firstValue < secondValue)
                 {
                     upperHeightTextBox.BackColor = Color.LightCoral;
                 }
@@ -80,37 +81,53 @@ namespace ChessRookUI
 
         private void fullHeightTextBox_TextChanged(object sender, EventArgs e)
         {
-            int value = 0;
-            int.TryParse(fullHeightTextBox.Text, out value);
-
-            if ((value > 10000) || (value < 10))
+            try
+            {
+                int value = 0;
+                int.TryParse(fullHeightTextBox.Text, out value);
+                var isCorrect = _manager.Validation(value, 10, 10000);
+                if (isCorrect)
+                {
+                    fullHeightTextBox.BackColor = Color.LightGreen;
+                }
+                else
+                {
+                    fullHeightTextBox.BackColor = Color.LightCoral;
+                    buildButton.Enabled = false;
+                }
+            }
+            catch
             {
                 fullHeightTextBox.BackColor = Color.LightCoral;
-                buildButton.Enabled = false;
             }
-            else
-            {
-                fullHeightTextBox.BackColor = Color.LightGreen;
-            }
+           
             CheckColor();
             CheckNull();
         }
 
         private void lowerDiameterTextBox_TextChanged(object sender, EventArgs e)
         {
-            int value;
-            int.TryParse(lowerDiameterTextBox.Text, out value);
-
-
-            if ((value > 500) || (value < 5))
+            try
+            {
+                int value = 0;
+                int.TryParse(lowerDiameterTextBox.Text, out value);
+                var isCorrect = _manager.Validation(value, 5, 500);
+                if (isCorrect)
+                {
+                    lowerDiameterTextBox.BackColor = Color.LightGreen;
+                }
+                else
+                {
+                    lowerDiameterTextBox.BackColor = Color.LightCoral;
+                    buildButton.Enabled = false;
+                }
+            }
+            catch
             {
                 lowerDiameterTextBox.BackColor = Color.LightCoral;
                 buildButton.Enabled = false;
             }
-            else
-            {
-                lowerDiameterTextBox.BackColor = Color.LightGreen;
-            }
+
             CheckColor();
             CheckDiameter();
             CheckNull();
@@ -118,18 +135,27 @@ namespace ChessRookUI
 
         private void upperDiameterTextBox_TextChanged(object sender, EventArgs e)
         {
-            int value;
-            int.TryParse(upperDiameterTextBox.Text, out value);
-
-            if ((value > 100) || (value < 3))
+            try
+            {
+                int value = 0;
+                int.TryParse(upperDiameterTextBox.Text, out value);
+                var isCorrect = _manager.Validation(value, 3, 100);
+                if (isCorrect)
+                {
+                    upperDiameterTextBox.BackColor = Color.LightGreen;
+                }
+                else
+                {
+                    upperDiameterTextBox.BackColor = Color.LightCoral;
+                    buildButton.Enabled = false;
+                }
+            }
+            catch
             {
                 upperDiameterTextBox.BackColor = Color.LightCoral;
                 buildButton.Enabled = false;
             }
-            else
-            {
-                upperDiameterTextBox.BackColor = Color.LightGreen;
-            }
+
             CheckColor();
             CheckDiameter();
             CheckNull();
@@ -137,19 +163,27 @@ namespace ChessRookUI
 
         private void upperHeightTextBox_TextChanged(object sender, EventArgs e)
         {
-
-            int value;
-            int.TryParse(upperHeightTextBox.Text, out value);
-
-            if ((value > 150) || (value < 2))
+            try
+            {
+                int value = 0;
+                int.TryParse(upperHeightTextBox.Text, out value);
+                var isCorrect = _manager.Validation(value, 2, 150);
+                if (isCorrect)
+                {
+                    upperHeightTextBox.BackColor = Color.LightGreen;
+                }
+                else
+                {
+                    upperHeightTextBox.BackColor = Color.LightCoral;
+                    buildButton.Enabled = false;
+                }
+            }
+            catch
             {
                 upperHeightTextBox.BackColor = Color.LightCoral;
                 buildButton.Enabled = false;
             }
-            else
-            {
-                upperHeightTextBox.BackColor = Color.LightGreen;
-            }
+
             CheckColor();
             CheckHeight();
             CheckNull();
@@ -157,18 +191,27 @@ namespace ChessRookUI
 
         private void lowerHeightTextBox_TextChanged(object sender, EventArgs e)
         {
-            int value;
-            int.TryParse(lowerHeightTextBox.Text, out value);
-
-            if ((value > 100) || (value < 3))
+            try
+            {
+                int value = 0;
+                int.TryParse(lowerHeightTextBox.Text, out value);
+                var isCorrect = _manager.Validation(value, 2, 150);
+                if (isCorrect)
+                {
+                    lowerHeightTextBox.BackColor = Color.LightGreen;
+                }
+                else
+                {
+                    lowerHeightTextBox.BackColor = Color.LightCoral;
+                    buildButton.Enabled = false;
+                }
+            }
+            catch
             {
                 lowerHeightTextBox.BackColor = Color.LightCoral;
                 buildButton.Enabled = false;
             }
-            else
-            {
-                lowerHeightTextBox.BackColor = Color.LightGreen;
-            }
+
             CheckColor();
             CheckHeight();
             CheckNull();
@@ -209,7 +252,6 @@ namespace ChessRookUI
                 UpperBaseHeight = int.Parse(upperHeightTextBox.Text)
             };
 
-            _manager = new Manager();
             _manager.InitializeComponent(_rookInfo);
         }
     }

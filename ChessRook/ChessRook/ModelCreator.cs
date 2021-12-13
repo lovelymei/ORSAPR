@@ -30,7 +30,6 @@ namespace ChessRook
 
         private void CreateDocument()
         {
-
             _document3D = _kompas.KompasObject.Document3D();
             _document3D.Create(false, true);
             _document2D = _kompas.KompasObject.Document2D();

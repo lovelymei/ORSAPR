@@ -16,8 +16,16 @@ namespace ChessRook
 
         }
 
-        public void Validation(RookInfo rookInfo)
+        public bool Validation(int value,int min,int max)
         {
+            if ((value >= min) && (value <= max))
+            {
+                return true;
+            }
+            else
+            { 
+                return false; 
+            }
 
         }
     }
