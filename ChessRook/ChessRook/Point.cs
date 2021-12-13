@@ -8,7 +8,14 @@ namespace ChessRook
 {
     public class Point
     {
-        public int x;
-        public int y;
+        /// <summary>
+        /// Координата х
+        /// </summary>
+        public int X;
+
+        /// <summary>
+        /// Координата y
+        /// </summary>
+        public int Y;
     }
 }

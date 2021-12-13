@@ -5,16 +5,55 @@ namespace ChessRook
 {
     class ModelCreator
     {
+        /// <summary>
+        /// данные ладьи
+        /// </summary>
         private RookInfo _rookInfo;
+
+        /// <summary>
+        /// 3д-документ
+        /// </summary>
         private ksDocument3D _document3D;
+
+        /// <summary>
+        /// 2д-документ
+        /// </summary>
         private ksDocument2D _document2D;
+
+        /// <summary>
+        /// Интерфейс 
+        /// </summary>
         private ksPart _part;
+
+        /// <summary>
+        /// Текущая плоскость
+        /// </summary>
         private ksEntity _plane;
+
+        /// <summary>
+        /// Текущий эскиз
+        /// </summary>
         private ksEntity _sketch;
+
+        /// <summary>
+        /// 
+        /// </summary>
         private ksSketchDefinition _sketchDefinition;
+
+        /// <summary>
+        /// Объект KompasConnector
+        /// </summary>
         private KompasConnector _kompas;
+
+        /// <summary>
+        /// Объект Point
+        /// </summary>
         private Point _point;
 
+        /// <summary>
+        /// Конструктор
+        /// </summary>
+        /// <param name="rookInfo"> Данные ладьи </param>
         public ModelCreator(RookInfo rookInfo)
         {
             _rookInfo = new RookInfo
@@ -28,6 +67,9 @@ namespace ChessRook
             _point = new Point();
         }
 
+        /// <summary>
+        /// Создание документа
+        /// </summary>
         private void CreateDocument()
         {
             _document3D = _kompas.KompasObject.Document3D();
@@ -36,13 +78,22 @@ namespace ChessRook
             _part = (ksPart)_document3D.GetPart((int)Part_Type.pTop_Part);
         }
 
+        /// <summary>
+        /// Отрисовка линии 
+        /// </summary>
+        /// <param name="x">Координата x</param>
+        /// <param name="y">Координата y</param>
         private void DrawLine(int x, int y)
         {
-            _document2D.ksLineSeg(_point.x, _point.y, _point.x + x, _point.y+y, 1);
-            _point.x += x;
-            _point.y += y;
+            _document2D.ksLineSeg(_point.X, _point.Y, _point.X + x, _point.Y+y, 1);
+            _point.X += x;
+            _point.Y += y;
         }
         
+        /// <summary>
+        /// Создание эскиза
+        /// </summary>
+        /// <param name="rook"></param>
         public void CreateSketch(RookInfo rook)
         {
             _kompas = new KompasConnector();
@@ -63,19 +114,19 @@ namespace ChessRook
             
             var nextPoint = new Point()
             {
-                x = 2 * _rookInfo.UpperBaseDiameter / 5,
-                y = _rookInfo.FullHeight - 2 * _rookInfo.UpperBaseHeight,
+                X = 2 * _rookInfo.UpperBaseDiameter / 5,
+                Y = _rookInfo.FullHeight - 2 * _rookInfo.UpperBaseHeight,
             };
             var changePoint = new Point()
             {
-                x = nextPoint.x - _point.x,
-                y = nextPoint.y - _point.y
+                X = nextPoint.X - _point.X,
+                Y = nextPoint.Y - _point.Y
             };
 
-            DrawLine(changePoint.x, changePoint.y);
+            DrawLine(changePoint.X, changePoint.Y);
             DrawLine(_rookInfo.UpperBaseDiameter/10, 0);
             DrawLine(0, _rookInfo.UpperBaseHeight);
-            DrawLine(-_point.x, 0);
+            DrawLine(-_point.X, 0);
         }
 
     }

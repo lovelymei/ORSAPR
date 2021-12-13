@@ -4,15 +4,23 @@ namespace ChessRook
 {
     public class KompasConnector
     {
-
+        /// <summary>
+        /// Объект KompasObject
+        /// </summary>
         private KompasObject _kompasObject;
 
+        /// <summary>
+        /// свойство для _kompasObject
+        /// </summary>
         public KompasObject KompasObject
         {
             get { return _kompasObject; }
             set { _kompasObject = value; }
         }
 
+        /// <summary>
+        /// Открытие КОМПАС 3Д
+        /// </summary>
         public void OpenKompas3D()
         {
             if (_kompasObject == null)
@@ -28,11 +36,12 @@ namespace ChessRook
             }
         }
 
-
+        /// <summary>
+        /// Конструктор
+        /// </summary>
         public KompasConnector() 
         {
             OpenKompas3D();
-
 
         }
     }

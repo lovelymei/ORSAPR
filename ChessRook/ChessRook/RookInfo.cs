@@ -9,6 +9,9 @@ namespace ChessRook
         private int _upperBaseDiameter;
         private int _lowerBaseDiameter;
 
+        /// <summary>
+        /// свойство параметра "Полная высота фигуры"
+        /// </summary>
         public int FullHeight { 
             get 
             { 
@@ -27,6 +30,9 @@ namespace ChessRook
             } 
         }
 
+        /// <summary>
+        /// свойство параметра "высота верхнего основания"
+        /// </summary>
         public int UpperBaseHeight { 
             get
             { 
@@ -40,6 +46,10 @@ namespace ChessRook
                 }
             } 
         }
+
+        /// <summary>
+        /// свойство параметра "высота нижнего основания"
+        /// </summary>
         public int LowerBaseHeight { 
             get 
             { 
@@ -54,6 +64,9 @@ namespace ChessRook
             } 
         }
 
+        /// <summary>
+        /// свойство параметра "диаметр верхнего основания"
+        /// </summary>
         public int UpperBaseDiameter 
         {
             get 
@@ -68,7 +81,9 @@ namespace ChessRook
                 }
             } 
         }
-
+        /// <summary>
+        /// свойство параметра "диаметр нижнего основания"
+        /// </summary>
         public int LowerBaseDiameter 
         { 
             get 
@@ -84,6 +99,9 @@ namespace ChessRook
             } 
         }
 
+        /// <summary>
+        /// Конструктор
+        /// </summary>
         public RookInfo() { }
     }
 }
