@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessRook", "ChessRook\Ches
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChessRookUI", "ChessRookUI\ChessRookUI.csproj", "{DB36F908-D744-40D2-B8AC-54B05F197376}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rook", "Rook\Rook.csproj", "{115D3AE4-2238-4F36-9503-199DAB35067F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RookTests", "RookTests\RookTests.csproj", "{1DA40935-6B54-40D6-B501-F4C120FE5C88}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{DB36F908-D744-40D2-B8AC-54B05F197376}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB36F908-D744-40D2-B8AC-54B05F197376}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB36F908-D744-40D2-B8AC-54B05F197376}.Release|Any CPU.Build.0 = Release|Any CPU
+		{115D3AE4-2238-4F36-9503-199DAB35067F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{115D3AE4-2238-4F36-9503-199DAB35067F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{115D3AE4-2238-4F36-9503-199DAB35067F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{115D3AE4-2238-4F36-9503-199DAB35067F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DA40935-6B54-40D6-B501-F4C120FE5C88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DA40935-6B54-40D6-B501-F4C120FE5C88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DA40935-6B54-40D6-B501-F4C120FE5C88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DA40935-6B54-40D6-B501-F4C120FE5C88}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
