@@ -10,11 +10,11 @@ namespace Rook
         /// <summary>
         /// Координата х
         /// </summary>
-        public int X;
+        public int X { get; set; }
 
         /// <summary>
         /// Координата y
         /// </summary>
-        public int Y;
+        public int Y { get; set; }
     }
 }

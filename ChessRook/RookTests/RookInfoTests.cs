@@ -110,5 +110,31 @@ namespace RookTests
 
             Assert.AreEqual(expected, rook.UpperBaseDiameter);
         }
+
+        [Test(Description = "Тест метода Validation класса RookInfo. Он должен вернуть true")]
+        public void Validation_ReturnsTrue()
+        {
+            int value = 10;
+            int max = 100;
+            int min = 5;
+
+            var rook = new RookInfo();
+
+            var actual = rook.Validation(value, min, max);
+            Assert.IsTrue(actual);
+        }
+
+        [Test(Description = "Тест метода Validation класса RookInfo. Он должен вернуть false")]
+        public void Validation_ReturnsFalse()
+        {
+            int value = 700;
+            int max = 100;
+            int min = 5;
+
+            var rook = new RookInfo();
+
+            var actual = rook.Validation(value, min, max);
+            Assert.IsFalse(actual);
+        }
     }
 }
