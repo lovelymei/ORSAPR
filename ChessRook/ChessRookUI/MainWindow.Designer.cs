@@ -60,6 +60,7 @@ namespace ChessRookUI
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Image = global::ChessRookUI.Properties.Resources.rook1;
             this.pictureBox1.Location = new System.Drawing.Point(12, 29);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(122, 120);
@@ -158,6 +159,7 @@ namespace ChessRookUI
             // 
             // pictureBox2
             // 
+            this.pictureBox2.Image = global::ChessRookUI.Properties.Resources.rook2;
             this.pictureBox2.Location = new System.Drawing.Point(170, 29);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(122, 120);
@@ -167,6 +169,7 @@ namespace ChessRookUI
             // 
             // pictureBox3
             // 
+            this.pictureBox3.Image = global::ChessRookUI.Properties.Resources.rook3;
             this.pictureBox3.Location = new System.Drawing.Point(328, 29);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(122, 120);

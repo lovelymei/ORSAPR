@@ -17,10 +17,6 @@ namespace ChessRookUI
         public MainWindow()
         {
             InitializeComponent();
-            //TODO:
-            pictureBox1.Image = Image.FromFile("C:\\Users\\user\\source\\repos\\ORSAPR\\ChessRook\\1.png");
-            pictureBox2.Image = Image.FromFile("C:\\Users\\user\\source\\repos\\ORSAPR\\ChessRook\\2.png");
-            pictureBox3.Image = Image.FromFile("C:\\Users\\user\\source\\repos\\ORSAPR\\ChessRook\\3.png");
 
             buildButton.Enabled = false;
 

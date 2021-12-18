@@ -9,7 +9,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChessRookUI", "ChessRookUI\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rook", "Rook\Rook.csproj", "{115D3AE4-2238-4F36-9503-199DAB35067F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RookTests", "RookTests\RookTests.csproj", "{1DA40935-6B54-40D6-B501-F4C120FE5C88}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RookTests", "RookTests\RookTests.csproj", "{1DA40935-6B54-40D6-B501-F4C120FE5C88}"
+	ProjectSection(ProjectDependencies) = postProject
+		{115D3AE4-2238-4F36-9503-199DAB35067F} = {115D3AE4-2238-4F36-9503-199DAB35067F}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

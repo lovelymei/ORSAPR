@@ -106,7 +106,7 @@ namespace ChessRook
             DrawLine(_rookInfo.UpperBaseDiameter/2,0);
             DrawLine(0,_rookInfo.UpperBaseHeight);
             DrawLine(-_rookInfo.UpperBaseDiameter / 10, 0);
-            //диагонль
+            //диагональ
             var nextPoint = new Point()
             {
                 X = 2 * _rookInfo.LowerBaseDiameter / 5,
@@ -158,7 +158,7 @@ namespace ChessRook
             var center = new Point();
 
             _document2D.ksCircle(center.X, center.X, _rookInfo.UpperBaseDiameter / 2, 1);
-            _document2D.ksCircle(center.X, center.X, _rookInfo.UpperBaseDiameter / 2.2, 1);
+            _document2D.ksCircle(center.X, center.X, _rookInfo.UpperBaseDiameter / 2.2, 1); 
 
             battleSketchDefinition.EndEdit();
             Extrude(battleSketch);
@@ -171,17 +171,17 @@ namespace ChessRook
         /// <param name="sketch"></param>
         private void Extrude(ksEntity sketch)
         {
-            int depth = _rookInfo.UpperBaseDiameter / 10;
-            var entityExtrude = (ksEntity)_part.NewEntity((short)Obj3dType.o3d_bossExtrusion);
+            int depth = _rookInfo.UpperBaseHeight;
+            var extrudeEntity = (ksEntity)_part.NewEntity((short)Obj3dType.o3d_bossExtrusion);
             // интерфейс базовой операции выдавливания
-            var entityExtrudeDefinition = (ksBossExtrusionDefinition)entityExtrude.GetDefinition();
+            var extrudeDefinition = (ksBossExtrusionDefinition)extrudeEntity.GetDefinition();
             // интерфейс структуры параметров выдавливания
-            ksExtrusionParam extrudeParameters = (ksExtrusionParam)entityExtrudeDefinition.ExtrusionParam();
+            ksExtrusionParam extrudeParameters = (ksExtrusionParam)extrudeDefinition.ExtrusionParam();
             extrudeParameters.direction = (short)Direction_Type.dtNormal;
             // интерфейс структуры параметров тонкой стенки
-            ksThinParam thinParam = (ksThinParam)entityExtrudeDefinition.ThinParam();
+            ksThinParam thinParam = (ksThinParam)extrudeDefinition.ThinParam();
 
-            entityExtrudeDefinition.SetSketch(sketch);
+            extrudeDefinition.SetSketch(sketch);
             // тип выдавливания (строго на глубину)
             extrudeParameters.typeNormal = (short)End_Type.etBlind;
             // глубина выдавливания
@@ -194,7 +194,7 @@ namespace ChessRook
             //Направление формирования тонкой стенки
             thinParam.thinType = (short)Direction_Type.dtReverse;
 
-            entityExtrude.Create();
+            extrudeEntity.Create();
         }
 
         /// <summary>
