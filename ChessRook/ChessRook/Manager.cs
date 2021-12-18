@@ -1,5 +1,4 @@
-﻿
-using Kompas6API5;
+﻿using Rook;
 
 namespace ChessRook
 {
@@ -21,28 +20,6 @@ namespace ChessRook
         {
             _createModel = new ModelCreator(rookInfo);
             _createModel.CreateSketch(rookInfo);
-
-        }
-
-            //TODO: 
-        /// <summary>
-        /// Валидация на то, входит ли значение в заданный диапазон
-        /// </summary>
-        /// <param name="value"> Проверяемое значение </param>
-        /// <param name="min"> Минимальное значение </param>
-        /// <param name="max"> Максимальное значение </param>
-        /// <returns></returns>
-        public bool Validation(int value,int min,int max)
-        {
-            if ((value >= min) && (value <= max))
-            {
-                return true;
-            }
-            else
-            { 
-                return false; 
-            }
-
         }
     }
 }

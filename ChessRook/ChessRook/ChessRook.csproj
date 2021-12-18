@@ -45,8 +45,6 @@
     <Compile Include="KompasConnector.cs" />
     <Compile Include="Manager.cs" />
     <Compile Include="ModelCreator.cs" />
-    <Compile Include="Point.cs" />
-    <Compile Include="RookInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="CONVERTLIBINTERFACES">
@@ -93,6 +91,12 @@
       <HintPath>Common\VCHATCHLib.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Rook\Rook.csproj">
+      <Project>{115d3ae4-2238-4f36-9503-199dab35067f}</Project>
+      <Name>Rook</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -43,7 +43,6 @@ namespace ChessRook
         public KompasConnector() 
         {
             OpenKompas3D();
-
         }
     }
 }
