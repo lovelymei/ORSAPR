@@ -1,6 +1,6 @@
 ﻿using Kompas6API5;
 using System;
-namespace ChessRook
+namespace KompasApi
 {
     //TODO: RSDN
     public class KompasConnector

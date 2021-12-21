@@ -49,10 +49,7 @@ namespace ChessRookUI
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.buildButton = new System.Windows.Forms.Button();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
-            this.toolTip3 = new System.Windows.Forms.ToolTip(this.components);
-            this.toolTip4 = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -127,7 +124,7 @@ namespace ChessRookUI
             this.lowerDiameterTextBox.Name = "lowerDiameterTextBox";
             this.lowerDiameterTextBox.Size = new System.Drawing.Size(55, 23);
             this.lowerDiameterTextBox.TabIndex = 7;
-            this.toolTip1.SetToolTip(this.lowerDiameterTextBox, "Эта величина должна быть меньше величины С");
+            this.toolTip.SetToolTip(this.lowerDiameterTextBox, "Эта величина должна быть меньше величины С");
             this.lowerDiameterTextBox.TextChanged += new System.EventHandler(this.lowerDiameterTextBox_TextChanged);
             // 
             // upperDiameterTextBox
@@ -136,7 +133,6 @@ namespace ChessRookUI
             this.upperDiameterTextBox.Name = "upperDiameterTextBox";
             this.upperDiameterTextBox.Size = new System.Drawing.Size(55, 23);
             this.upperDiameterTextBox.TabIndex = 8;
-            this.toolTip2.SetToolTip(this.upperDiameterTextBox, "Эта величина должна быть больше величины В");
             this.upperDiameterTextBox.TextChanged += new System.EventHandler(this.upperDiameterTextBox_TextChanged);
             // 
             // upperHeightTextBox
@@ -145,7 +141,6 @@ namespace ChessRookUI
             this.upperHeightTextBox.Name = "upperHeightTextBox";
             this.upperHeightTextBox.Size = new System.Drawing.Size(55, 23);
             this.upperHeightTextBox.TabIndex = 9;
-            this.toolTip3.SetToolTip(this.upperHeightTextBox, "Эта величина должна быть меньше величины E");
             this.upperHeightTextBox.TextChanged += new System.EventHandler(this.upperHeightTextBox_TextChanged);
             // 
             // lowerHeightTextBox
@@ -154,7 +149,6 @@ namespace ChessRookUI
             this.lowerHeightTextBox.Name = "lowerHeightTextBox";
             this.lowerHeightTextBox.Size = new System.Drawing.Size(55, 23);
             this.lowerHeightTextBox.TabIndex = 10;
-            this.toolTip4.SetToolTip(this.lowerHeightTextBox, "Эта величина должна быть больше величины D");
             this.lowerHeightTextBox.TextChanged += new System.EventHandler(this.lowerHeightTextBox_TextChanged);
             // 
             // pictureBox2
@@ -232,11 +226,11 @@ namespace ChessRookUI
             this.buildButton.UseVisualStyleBackColor = true;
             this.buildButton.Click += new System.EventHandler(this.buildButton_Click);
             // 
-            // toolTip1
+            // toolTip
             // 
-            this.toolTip1.AutoPopDelay = 5000;
-            this.toolTip1.InitialDelay = 5000;
-            this.toolTip1.ReshowDelay = 100;
+            this.toolTip.AutoPopDelay = 5000;
+            this.toolTip.InitialDelay = 5000;
+            this.toolTip.ReshowDelay = 100;
             // 
             // MainWindow
             // 
@@ -294,10 +288,7 @@ namespace ChessRookUI
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button buildButton;
-        private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.ToolTip toolTip2;
-        private System.Windows.Forms.ToolTip toolTip3;
-        private System.Windows.Forms.ToolTip toolTip4;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }
 

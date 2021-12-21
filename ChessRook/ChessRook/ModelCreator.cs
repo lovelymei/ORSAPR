@@ -2,7 +2,7 @@
 using Kompas6Constants3D;
 using Rook;
 
-namespace ChessRook
+namespace KompasApi
 {
         //TODO: RSDN
     /// <summary>
@@ -27,7 +27,7 @@ namespace ChessRook
         private ksDocument2D _document2D;
 
         /// <summary>
-        /// Интерфейс 
+        /// Интерфейс ksPart
         /// </summary>
         private ksPart _part;
 
@@ -85,7 +85,7 @@ namespace ChessRook
         /// Создание эскиза
         /// </summary>
         /// <param name="rook"></param>
-        public void CreateSketch(RookInfo rook)
+        public void CreateSketch()
         {
             ksEntity plane;
             ksEntity sketch;
@@ -125,6 +125,7 @@ namespace ChessRook
 
             //ось вращения, 3 - тип линии
             _document2D.ksLineSeg(0, 0,0, _rookInfo.FullHeight, 3);
+
             sketchDefinition.EndEdit();
             
             Rotate(sketch);

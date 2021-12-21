@@ -1,7 +1,6 @@
 ﻿
 namespace Rook
 {
-
     /// <summary>
     /// Точка (для построения 2D-эскизов)
     /// </summary>

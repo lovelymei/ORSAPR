@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31321.278
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessRook", "ChessRook\ChessRook.csproj", "{6DB9ED92-9EAC-43CD-8C1A-E0B093ACAAF0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KompasApi", "ChessRook\KompasApi.csproj", "{6DB9ED92-9EAC-43CD-8C1A-E0B093ACAAF0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChessRookUI", "ChessRookUI\ChessRookUI.csproj", "{DB36F908-D744-40D2-B8AC-54B05F197376}"
 EndProject

@@ -1,4 +1,4 @@
-﻿using ChessRook;
+﻿using KompasApi;
 using Rook;
 using System;
 using System.Collections.Generic;
@@ -24,42 +24,35 @@ namespace ChessRookUI
             _manager = new Manager();
 
             _textBoxes = Controls.Cast<Control>().Where(c => c.GetType() == typeof(TextBox)).ToList();
+
+            toolTip.SetToolTip(fullHeightTextBox, "Должна быть больше величин D и Е, а также их суммы");
+            toolTip.SetToolTip(lowerDiameterTextBox, "Эта величина должна быть больше величины C");
+            toolTip.SetToolTip(upperDiameterTextBox, "Эта величина должна быть меньше величины В");
+            toolTip.SetToolTip(lowerHeightTextBox, "Эта величина должна быть больше величины Е");
+            toolTip.SetToolTip(upperHeightTextBox, "Эта величина должна быть меньше величины D");
         }
 
         private void CheckHeight()
         {
-            if ((fullHeightTextBox.Text != null) && 
-                (upperHeightTextBox.Text != null) && (lowerHeightTextBox.Text != null))
+            if (!string.IsNullOrEmpty(fullHeightTextBox.Text) && 
+                !string.IsNullOrEmpty(upperHeightTextBox.Text) && 
+                !string.IsNullOrEmpty(lowerHeightTextBox.Text))
             {
                 int.TryParse(upperHeightTextBox.Text, out int upper);
                 int.TryParse(lowerHeightTextBox.Text, out int lower);
                 int.TryParse(fullHeightTextBox.Text, out int full);
 
-                if (upper > full)
-                {
-                    DrawRed(fullHeightTextBox);
-                    DrawRed(upperHeightTextBox);
-                }
-                if (lower > full)
-                {
-                    DrawRed(fullHeightTextBox);
-                    DrawRed(lowerHeightTextBox);
-                }
-
                 if ((upper + lower) > full)
                 {
                     DrawRed(fullHeightTextBox);
-                    DrawRed(upperHeightTextBox);
-                    DrawRed(lowerHeightTextBox);
                 }
                 else
                 {
                     DrawGreen(fullHeightTextBox);
-                    DrawGreen(upperHeightTextBox);
-                    DrawGreen(lowerHeightTextBox);
                 }
             }
         }
+
         private void CheckColor()
         {
             //TODO: RSDN
@@ -69,7 +62,8 @@ namespace ChessRookUI
         
         private void CheckDepencies(TextBox upperBox, TextBox lowerBox)
         {
-            if ((upperBox.Text != null) || (lowerBox.Text != null))
+            if (!string.IsNullOrEmpty(upperBox.Text) &&
+                !string.IsNullOrEmpty(lowerBox.Text))
             {
                 int.TryParse(upperBox.Text, out int upper);
                 int.TryParse(lowerBox.Text, out int lower);
@@ -85,7 +79,6 @@ namespace ChessRookUI
                     DrawGreen(upperBox);
                 }
             }
-
         }
 
         private void CheckNull()
@@ -113,9 +106,11 @@ namespace ChessRookUI
 
         private void Checking()
         {
+            CheckDepencies(upperHeightTextBox, fullHeightTextBox);
+            CheckDepencies(lowerHeightTextBox, fullHeightTextBox);
             CheckHeight();
-            CheckDepencies(upperDiameterTextBox, lowerDiameterTextBox);
-            CheckDepencies(upperHeightTextBox, lowerHeightTextBox);
+            CheckDepencies(lowerDiameterTextBox, upperDiameterTextBox);
+            CheckDepencies(lowerHeightTextBox, upperHeightTextBox);
             CheckNull();
             CheckColor();
         }

@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ChessRook\ChessRook.csproj" />
+    <ProjectReference Include="..\ChessRook\KompasApi.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,6 +1,6 @@
 ﻿using Rook;
 
-namespace ChessRook
+namespace KompasApi
 {
         //TODO: RSDN
     public class Manager
@@ -19,7 +19,7 @@ namespace ChessRook
         public void InitializeComponent(RookInfo rookInfo)
         {
             _createModel = new ModelCreator(rookInfo);
-            _createModel.CreateSketch(rookInfo);
+            _createModel.CreateSketch();
         }
     }
 }
