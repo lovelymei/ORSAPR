@@ -3,6 +3,9 @@
 namespace KompasApi
 {
         //TODO: RSDN
+    /// <summary>
+    /// 
+    /// </summary>
     public class Manager
     {
         /// <summary>
@@ -10,6 +13,9 @@ namespace KompasApi
         /// </summary>
         private ModelCreator _createModel;
 
+        /// <summary>
+        /// конструктор
+        /// </summary>
         public Manager() { }
 
         /// <summary>
@@ -19,7 +25,7 @@ namespace KompasApi
         public void InitializeComponent(RookInfo rookInfo)
         {
             _createModel = new ModelCreator(rookInfo);
-            _createModel.CreateSketch();
+            _createModel.CreateRook();
         }
     }
 }

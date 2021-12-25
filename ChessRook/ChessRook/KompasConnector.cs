@@ -1,8 +1,12 @@
 ﻿using Kompas6API5;
 using System;
+
 namespace KompasApi
 {
     //TODO: RSDN
+    /// <summary>
+    /// класс для подключения к КОМПАС 3D
+    /// </summary>
     public class KompasConnector
     {
         /// <summary>
