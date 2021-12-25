@@ -28,8 +28,8 @@ namespace ChessRookUI
             toolTip.SetToolTip(fullHeightTextBox, "Должна быть больше величин D и Е, а также их суммы");
             toolTip.SetToolTip(lowerDiameterTextBox, "Эта величина должна быть больше величины C");
             toolTip.SetToolTip(upperDiameterTextBox, "Эта величина должна быть меньше величины В");
-            toolTip.SetToolTip(lowerHeightTextBox, "Эта величина должна быть больше величины Е");
-            toolTip.SetToolTip(upperHeightTextBox, "Эта величина должна быть меньше величины D");
+            toolTip.SetToolTip(lowerHeightTextBox, "Эта величина должна быть меньше величины Е");
+            toolTip.SetToolTip(upperHeightTextBox, "Эта величина должна быть больше величины D");
         }
 
         private void CheckHeight()
@@ -151,13 +151,13 @@ namespace ChessRookUI
 
         private void upperHeightTextBox_TextChanged(object sender, EventArgs e)
         {
-            ParsingAndValidation(upperHeightTextBox, 2, 150);
+            ParsingAndValidation(upperHeightTextBox, 3, 150);
             Checking();
         }
 
         private void lowerHeightTextBox_TextChanged(object sender, EventArgs e)
         {
-            ParsingAndValidation(lowerHeightTextBox, 3, 100);
+            ParsingAndValidation(lowerHeightTextBox, 2, 100);
             Checking();
         }
 

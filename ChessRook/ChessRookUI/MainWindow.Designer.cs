@@ -205,7 +205,7 @@ namespace ChessRookUI
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(92, 15);
             this.label9.TabIndex = 16;
-            this.label9.Text = "(2 мм - 150 мм)";
+            this.label9.Text = "(3 мм - 150 мм)";
             // 
             // label10
             // 
@@ -214,7 +214,7 @@ namespace ChessRookUI
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(95, 15);
             this.label10.TabIndex = 17;
-            this.label10.Text = "(3 мм - 100 мм )";
+            this.label10.Text = "(2 мм - 100 мм )";
             // 
             // buildButton
             // 
@@ -229,7 +229,7 @@ namespace ChessRookUI
             // toolTip
             // 
             this.toolTip.AutoPopDelay = 5000;
-            this.toolTip.InitialDelay = 5000;
+            this.toolTip.InitialDelay = 1;
             this.toolTip.ReshowDelay = 100;
             // 
             // MainWindow
@@ -257,6 +257,8 @@ namespace ChessRookUI
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
+            this.MaximumSize = new System.Drawing.Size(480, 419);
+            this.MinimumSize = new System.Drawing.Size(480, 419);
             this.Name = "MainWindow";
             this.Text = "Ладья";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
