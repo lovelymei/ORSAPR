@@ -19,7 +19,7 @@ namespace KompasApi
         public Manager() { }
 
         /// <summary>
-        /// Инициализация компонента (и создание 2д-эскиза)
+        /// Инициализация компонента (и создание модели)
         /// </summary>
         /// <param name="rookInfo"> Данные ладьи </param>
         public void InitializeComponent(RookInfo rookInfo)

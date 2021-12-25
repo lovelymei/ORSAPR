@@ -57,7 +57,9 @@ namespace ChessRookUI
         {
             //TODO: RSDN
             if (_textBoxes.All(t => t.BackColor == Color.LightGreen))
+            {
                 buildButton.Enabled = true;
+            }
         }
         
         private void CheckDepencies(TextBox upperBox, TextBox lowerBox)
@@ -109,7 +111,7 @@ namespace ChessRookUI
             CheckDepencies(upperHeightTextBox, fullHeightTextBox);
             CheckDepencies(lowerHeightTextBox, fullHeightTextBox);
             CheckHeight();
-            CheckDepencies(lowerDiameterTextBox, upperDiameterTextBox);
+            CheckDepencies(upperDiameterTextBox, lowerDiameterTextBox);
             CheckDepencies(lowerHeightTextBox, upperHeightTextBox);
             CheckNull();
             CheckColor();
@@ -128,6 +130,7 @@ namespace ChessRookUI
                 DrawRed(box);
             }
         }
+
         private void fullHeightTextBox_TextChanged(object sender, EventArgs e)
         {
             ParsingAndValidation(fullHeightTextBox, 10, 10000);
@@ -154,7 +157,7 @@ namespace ChessRookUI
 
         private void lowerHeightTextBox_TextChanged(object sender, EventArgs e)
         {
-            ParsingAndValidation(lowerHeightTextBox, 2, 150);
+            ParsingAndValidation(lowerHeightTextBox, 3, 100);
             Checking();
         }
 
