@@ -4,7 +4,7 @@ namespace KompasApi
 {
         //TODO: RSDN
     /// <summary>
-    /// 
+    /// Менеджер ModelCreator
     /// </summary>
     public class Manager
     {
