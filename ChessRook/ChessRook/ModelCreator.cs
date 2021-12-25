@@ -82,17 +82,29 @@ namespace KompasApi
         }
         
         /// <summary>
-        /// Создание эскиза
+        /// Создание модели ладьи
         /// </summary>
         /// <param name="rook"></param>
-        public void CreateSketch()
+        public void CreateRook()
         {
-            ksEntity plane;
+            CreateBase();
+            CreateBattlement();
+             
+            _document3D.drawMode = (int)ViewMode.vm_Shaded;
+            _document3D.shadedWireframe = true;
+        }
+
+        /// <summary>
+        /// Создание основной части ладьи
+        /// </summary>
+        public void CreateBase()
+        {
             ksEntity sketch;
+            ksEntity plane;
             ksSketchDefinition sketchDefinition;
-            
+
             _kompas = new KompasConnector();
-             CreateDocument();
+            CreateDocument();
 
             plane = _part.GetDefaultEntity((short)Obj3dType.o3d_planeXOY);
             sketch = _part.NewEntity((short)Obj3dType.o3d_sketch);
@@ -103,14 +115,14 @@ namespace KompasApi
 
             _document2D = sketchDefinition.BeginEdit();
 
-            DrawLine(_rookInfo.UpperBaseDiameter/2,0);
-            DrawLine(0,_rookInfo.UpperBaseHeight);
+            DrawLine(_rookInfo.UpperBaseDiameter / 2, 0);
+            DrawLine(0, _rookInfo.UpperBaseHeight);
             DrawLine(-_rookInfo.UpperBaseDiameter / 10, 0);
             //диагональ
             var nextPoint = new Point()
             {
                 X = 2 * _rookInfo.LowerBaseDiameter / 5,
-                Y = _rookInfo.FullHeight -_rookInfo.LowerBaseHeight - _rookInfo.UpperBaseHeight,
+                Y = _rookInfo.FullHeight - _rookInfo.LowerBaseHeight - _rookInfo.UpperBaseHeight,
             };
             var changePoint = new Point()
             {
@@ -121,23 +133,18 @@ namespace KompasApi
             DrawLine(changePoint.X, changePoint.Y);
             DrawLine(_rookInfo.LowerBaseDiameter / 10, 0);
             DrawLine(0, _rookInfo.LowerBaseHeight);
-            DrawLine(-_rookInfo.LowerBaseDiameter/2,0);
+            DrawLine(-_rookInfo.LowerBaseDiameter / 2, 0);
 
             //ось вращения, 3 - тип линии
-            _document2D.ksLineSeg(0, 0,0, _rookInfo.FullHeight, 3);
+            _document2D.ksLineSeg(0, 0, 0, _rookInfo.FullHeight, 3);
 
             sketchDefinition.EndEdit();
-            
+
             Rotate(sketch);
-            CreateBattlement();
-            Extrude(sketch);
-             
-            _document3D.drawMode = (int)ViewMode.vm_Shaded;
-            _document3D.shadedWireframe = true;
         }
 
         /// <summary>
-        /// Создание эскиза верхнего элемента
+        /// Создание верхнего элемента
         /// </summary>
         private void CreateBattlement()
         {
@@ -163,7 +170,6 @@ namespace KompasApi
 
             battleSketchDefinition.EndEdit();
             Extrude(battleSketch);
-
         }
 
         /// <summary>
