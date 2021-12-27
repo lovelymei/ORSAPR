@@ -8,29 +8,9 @@ namespace KompasApi
     /// <summary>
     /// Создание модели ладьи 
     /// </summary>
-    class ModelCreator
+    public class ModelCreator
     {
         //TODO: Опустить поля в методы
-        /// <summary>
-        /// данные ладьи
-        /// </summary>
-        private RookInfo _rookInfo;
-
-        /// <summary>
-        /// 3д-документ
-        /// </summary>
-        private ksDocument3D _document3D;
-
-        /// <summary>
-        /// 2д-документ
-        /// </summary>
-        private ksDocument2D _document2D;
-
-        /// <summary>
-        /// Интерфейс ksPart
-        /// </summary>
-        private ksPart _part;
-
         /// <summary>
         /// Объект KompasConnector
         /// </summary>
@@ -45,28 +25,21 @@ namespace KompasApi
         /// Конструктор
         /// </summary>
         /// <param name="rookInfo"> Данные ладьи </param>
-        public ModelCreator(RookInfo rookInfo)
-        {
-            _rookInfo = new RookInfo
-            {
-                FullHeight = rookInfo.FullHeight,
-                LowerBaseDiameter = rookInfo.LowerBaseDiameter,
-                LowerBaseHeight = rookInfo.LowerBaseHeight,
-                UpperBaseDiameter = rookInfo.UpperBaseDiameter,
-                UpperBaseHeight = rookInfo.UpperBaseHeight
-            };
-            _point = new Point();
-        }
+        public ModelCreator() { }
 
         /// <summary>
         /// Создание документа
         /// </summary>
         private void CreateDocument()
         {
-            _document3D = _kompas.KompasObject.Document3D();
-            _document3D.Create(false, true);
-            _document2D = _kompas.KompasObject.Document2D();
-            _part = (ksPart)_document3D.GetPart((int)Part_Type.pTop_Part);
+            if (_kompas == null)
+            {
+                _kompas = new KompasConnector();
+            }
+            else
+            {
+                _kompas.OpenKompas3D();
+            }
         }
 
         /// <summary>
@@ -76,7 +49,7 @@ namespace KompasApi
         /// <param name="y">Координата y</param>
         private void DrawLine(int x, int y)
         {
-            _document2D.ksLineSeg(_point.X, _point.Y, _point.X + x, _point.Y+y, 1);
+            _kompas.Document2D.ksLineSeg(_point.X, _point.Y, _point.X + x, _point.Y+y, 1);
             _point.X += x;
             _point.Y += y;
         }
@@ -85,44 +58,42 @@ namespace KompasApi
         /// Создание модели ладьи
         /// </summary>
         /// <param name="rook"></param>
-        public void CreateRook()
+        public void CreateRook(RookInfo rookInfo)
         {
-            CreateBase();
-            CreateBattlement();
-             
-            _document3D.drawMode = (int)ViewMode.vm_Shaded;
-            _document3D.shadedWireframe = true;
+            CreateDocument();
+            _point = new Point();
+            CreateBase(rookInfo);
+            CreateBattlement(rookInfo.UpperBaseHeight,rookInfo.UpperBaseDiameter);   
+            _kompas.Document3D.drawMode = (int)ViewMode.vm_Shaded;
+            _kompas.Document3D.shadedWireframe = true;
         }
 
         /// <summary>
         /// Создание основной части ладьи
         /// </summary>
-        public void CreateBase()
+        private void CreateBase(RookInfo rookInfo)
         {
             ksEntity sketch;
             ksEntity plane;
             ksSketchDefinition sketchDefinition;
 
-            _kompas = new KompasConnector();
-            CreateDocument();
-
-            plane = _part.GetDefaultEntity((short)Obj3dType.o3d_planeXOY);
-            sketch = _part.NewEntity((short)Obj3dType.o3d_sketch);
+            plane = _kompas.Part.GetDefaultEntity((short)Obj3dType.o3d_planeXOY);
+            sketch = _kompas.Part.NewEntity((short)Obj3dType.o3d_sketch);
             sketchDefinition = sketch.GetDefinition();
             sketchDefinition.SetPlane(plane);
 
             sketch.Create();
 
-            _document2D = sketchDefinition.BeginEdit();
+            _kompas.Document2D = sketchDefinition.BeginEdit();
 
-            DrawLine(_rookInfo.UpperBaseDiameter / 2, 0);
-            DrawLine(0, _rookInfo.UpperBaseHeight);
-            DrawLine(-_rookInfo.UpperBaseDiameter / 10, 0);
+            DrawLine(rookInfo.UpperBaseDiameter / 2, 0);
+            DrawLine(0, rookInfo.UpperBaseHeight);
+            DrawLine(-rookInfo.UpperBaseDiameter / 10, 0);
             //диагональ
             var nextPoint = new Point()
             {
-                X = 2 * _rookInfo.LowerBaseDiameter / 5,
-                Y = _rookInfo.FullHeight - _rookInfo.LowerBaseHeight - _rookInfo.UpperBaseHeight,
+                X = 2 * rookInfo.LowerBaseDiameter / 5,
+                Y = rookInfo.FullHeight - rookInfo.LowerBaseHeight - rookInfo.UpperBaseHeight,
             };
             var changePoint = new Point()
             {
@@ -131,12 +102,12 @@ namespace KompasApi
             };
 
             DrawLine(changePoint.X, changePoint.Y);
-            DrawLine(_rookInfo.LowerBaseDiameter / 10, 0);
-            DrawLine(0, _rookInfo.LowerBaseHeight);
-            DrawLine(-_rookInfo.LowerBaseDiameter / 2, 0);
+            DrawLine(rookInfo.LowerBaseDiameter / 10, 0);
+            DrawLine(0, rookInfo.LowerBaseHeight);
+            DrawLine(-rookInfo.LowerBaseDiameter / 2, 0);
 
             //ось вращения, 3 - тип линии
-            _document2D.ksLineSeg(0, 0, 0, _rookInfo.FullHeight, 3);
+            _kompas.Document2D.ksLineSeg(0, 0, 0, rookInfo.FullHeight, 3);
 
             sketchDefinition.EndEdit();
 
@@ -146,40 +117,40 @@ namespace KompasApi
         /// <summary>
         /// Создание верхнего элемента
         /// </summary>
-        private void CreateBattlement()
+        private void CreateBattlement(int upperBaseHeight,int upperBaseDiameter)
         {
             //новый скетч для зубчиков ладьи 
             ksEntity battlePlane;
             ksEntity battleSketch;
             ksSketchDefinition battleSketchDefinition;
 
-            battlePlane = _part.GetDefaultEntity((short)Obj3dType.o3d_planeXOZ);
-            battleSketch = _part.NewEntity((short)Obj3dType.o3d_sketch);
+            battlePlane = _kompas.Part.GetDefaultEntity((short)Obj3dType.o3d_planeXOZ);
+            battleSketch = _kompas.Part.NewEntity((short)Obj3dType.o3d_sketch);
             battleSketchDefinition = battleSketch.GetDefinition();
             battleSketchDefinition.SetPlane(battlePlane);
 
             battleSketch.Create();
 
-            _document2D = battleSketchDefinition.BeginEdit();
+            _kompas.Document2D = battleSketchDefinition.BeginEdit();
 
             //центр окружности, на которой будут отрисовываться зубчики
             var center = new Point();
 
-            _document2D.ksCircle(center.X, center.X, _rookInfo.UpperBaseDiameter / 2, 1);
-            _document2D.ksCircle(center.X, center.X, _rookInfo.UpperBaseDiameter / 2.2, 1); 
+            _kompas.Document2D.ksCircle(center.X, center.X, upperBaseDiameter / 2, 1);
+            _kompas.Document2D.ksCircle(center.X, center.X, upperBaseDiameter / 2.2, 1); 
 
             battleSketchDefinition.EndEdit();
-            Extrude(battleSketch);
+            Extrude(battleSketch, upperBaseHeight);
         }
 
         /// <summary>
         /// Выдавливание
         /// </summary>
         /// <param name="sketch"></param>
-        private void Extrude(ksEntity sketch)
+        private void Extrude(ksEntity sketch, int upperBaseHeight)
         {
-            int depth = _rookInfo.UpperBaseHeight;
-            var extrudeEntity = (ksEntity)_part.NewEntity((short)Obj3dType.o3d_bossExtrusion);
+            int depth = upperBaseHeight;
+            var extrudeEntity = (ksEntity)_kompas.Part.NewEntity((short)Obj3dType.o3d_bossExtrusion);
             // интерфейс базовой операции выдавливания
             var extrudeDefinition = (ksBossExtrusionDefinition)extrudeEntity.GetDefinition();
             // интерфейс структуры параметров выдавливания
@@ -208,13 +179,13 @@ namespace KompasApi
         /// Выдавливание вращением
         /// </summary>
         /// <param name="sketch"></param>
-        public void Rotate(ksEntity sketch)
+        private void Rotate(ksEntity sketch)
         {
             ksEntity rotatedEntity;
             ksBaseRotatedDefinition rotateDefinition;
 
             //интерфейс объекта "операция выдавливания вращением"
-            rotatedEntity = (ksEntity)_part.NewEntity((short)Obj3dType.o3d_baseRotated);
+            rotatedEntity = (ksEntity)_kompas.Part.NewEntity((short)Obj3dType.o3d_baseRotated);
 
             //интерфейс параметров операции  "выдавливание вращением"
             rotateDefinition = (ksBaseRotatedDefinition)rotatedEntity.GetDefinition();

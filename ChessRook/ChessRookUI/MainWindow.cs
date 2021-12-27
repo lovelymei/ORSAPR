@@ -11,7 +11,7 @@ namespace ChessRookUI
     public partial class MainWindow : Form
     {
         private RookInfo _rookInfo;
-        private Manager _manager;
+        private ModelCreator _modelCreator;
 
         private List<Control> _textBoxes;
         public MainWindow()
@@ -21,7 +21,7 @@ namespace ChessRookUI
             buildButton.Enabled = false;
 
             _rookInfo = new RookInfo();
-            _manager = new Manager();
+            _modelCreator = new ModelCreator();
 
             _textBoxes = Controls.Cast<Control>().Where(c => c.GetType() == typeof(TextBox)).ToList();
 
@@ -133,7 +133,7 @@ namespace ChessRookUI
 
         private void fullHeightTextBox_TextChanged(object sender, EventArgs e)
         {
-            ParsingAndValidation(fullHeightTextBox, 10, 10000);
+            ParsingAndValidation(fullHeightTextBox, 10, 1000);
             Checking();
         }
 
@@ -177,7 +177,8 @@ namespace ChessRookUI
                 UpperBaseHeight = int.Parse(upperHeightTextBox.Text)
             };
 
-            _manager.InitializeComponent(_rookInfo);
+           
+            _modelCreator.CreateRook(_rookInfo);
         }
     }
 }

@@ -43,7 +43,7 @@ namespace Rook
             } 
             set 
             { 
-                if (Validation(value, 10, 10000))
+                if (Validation(value, 10, 1000))
                 {
                     _fullHeight = value;
                 }

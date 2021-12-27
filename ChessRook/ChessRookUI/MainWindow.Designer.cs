@@ -176,9 +176,9 @@ namespace ChessRookUI
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(328, 180);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(113, 15);
+            this.label6.Size = new System.Drawing.Size(104, 15);
             this.label6.TabIndex = 13;
-            this.label6.Text = "(10 мм - 10 000 мм)";
+            this.label6.Text = "(10 мм - 1000 мм)";
             // 
             // label7
             // 
