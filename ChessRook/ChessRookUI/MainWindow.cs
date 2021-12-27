@@ -8,6 +8,7 @@ using System.Windows.Forms;
 
 namespace ChessRookUI
 {
+    //TODO: XML
     public partial class MainWindow : Form
     {
         private RookInfo _rookInfo;
@@ -23,6 +24,7 @@ namespace ChessRookUI
             _rookInfo = new RookInfo();
             _modelCreator = new ModelCreator();
 
+            //TODO: RSDN
             _textBoxes = Controls.Cast<Control>().Where(c => c.GetType() == typeof(TextBox)).ToList();
 
             toolTip.SetToolTip(fullHeightTextBox, "Должна быть больше величин D и Е, а также их суммы");
@@ -55,7 +57,7 @@ namespace ChessRookUI
 
         private void CheckColor()
         {
-            //TODO: RSDN
+            //TODO: to const
             if (_textBoxes.All(t => t.BackColor == Color.LightGreen))
             {
                 buildButton.Enabled = true;
@@ -85,7 +87,6 @@ namespace ChessRookUI
 
         private void CheckNull()
         {
-            //TODO: Поработать со списком.
             foreach (var textbox in _textBoxes)
             {
                 if (textbox.Text == "")
@@ -103,6 +104,7 @@ namespace ChessRookUI
 
         private void DrawGreen(TextBox box)
         {
+            //TODO: to const
             box.BackColor = Color.LightGreen;
         }
 
@@ -131,6 +133,8 @@ namespace ChessRookUI
             }
         }
 
+        //TODO: занести диапазоны в параметры
+        //tODO: Дублирования
         private void fullHeightTextBox_TextChanged(object sender, EventArgs e)
         {
             ParsingAndValidation(fullHeightTextBox, 10, 1000);

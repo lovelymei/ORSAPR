@@ -5,7 +5,6 @@ using System.Runtime.InteropServices;
 
 namespace KompasApi
 {
-    //TODO: RSDN
     /// <summary>
     /// класс для подключения к КОМПАС 3D
     /// </summary>

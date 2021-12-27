@@ -1,13 +1,11 @@
 ﻿
 namespace Rook
 {
-    //TODO:
     /// <summary>
     /// Данные для построения ладьи
     /// </summary>
     public class RookInfo
     {
-        //TODO: XML
         /// <summary>
         /// полная высота фигуры
         /// </summary>
@@ -77,7 +75,6 @@ namespace Rook
             } 
             set 
             {
-                //TODO: пересмотреть диапазоны
                 if (Validation(value, 2, 150))
                 {
                     _lowerBaseHeight = value;
@@ -135,14 +132,7 @@ namespace Rook
         /// <returns></returns>
         public bool Validation(int value, int min, int max)
         {
-            if ((value >= min) && (value <= max))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return (value >= min) && (value <= max);
         }
     }
 }

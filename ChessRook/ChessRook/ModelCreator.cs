@@ -4,13 +4,11 @@ using Rook;
 
 namespace KompasApi
 {
-        //TODO: RSDN
     /// <summary>
     /// Создание модели ладьи 
     /// </summary>
     public class ModelCreator
     {
-        //TODO: Опустить поля в методы
         /// <summary>
         /// Объект KompasConnector
         /// </summary>
@@ -21,6 +19,7 @@ namespace KompasApi
         /// </summary>
         private Point _point;
 
+        //TODO: Несоответствие XML-комментария сигнатуре метода 
         /// <summary>
         /// Конструктор
         /// </summary>
@@ -54,6 +53,7 @@ namespace KompasApi
             _point.Y += y;
         }
         
+        //TODO: Несоответствие XML-комментария сигнатуре метода 
         /// <summary>
         /// Создание модели ладьи
         /// </summary>
@@ -73,12 +73,12 @@ namespace KompasApi
         /// </summary>
         private void CreateBase(RookInfo rookInfo)
         {
-            ksEntity sketch;
+            //TODO: RSDN
             ksEntity plane;
             ksSketchDefinition sketchDefinition;
 
             plane = _kompas.Part.GetDefaultEntity((short)Obj3dType.o3d_planeXOY);
-            sketch = _kompas.Part.NewEntity((short)Obj3dType.o3d_sketch);
+            ksEntity sketch = _kompas.Part.NewEntity((short)Obj3dType.o3d_sketch);
             sketchDefinition = sketch.GetDefinition();
             sketchDefinition.SetPlane(plane);
 
@@ -119,6 +119,7 @@ namespace KompasApi
         /// </summary>
         private void CreateBattlement(int upperBaseHeight,int upperBaseDiameter)
         {
+            //TODO: RSDN
             //новый скетч для зубчиков ладьи 
             ksEntity battlePlane;
             ksEntity battleSketch;
@@ -181,6 +182,7 @@ namespace KompasApi
         /// <param name="sketch"></param>
         private void Rotate(ksEntity sketch)
         {
+            //TODO: RSDN
             ksEntity rotatedEntity;
             ksBaseRotatedDefinition rotateDefinition;
 
