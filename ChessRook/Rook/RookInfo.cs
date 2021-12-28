@@ -6,6 +6,58 @@ namespace Rook
     /// </summary>
     public class RookInfo
     {
+        #region DiapasonConst
+        /// <summary>
+        /// минимальная полная высота ладьи
+        /// </summary>
+        public readonly int FULL_HEIGHT_MIN = 10;
+
+        /// <summary>
+        /// максимальная полная высота ладьи
+        /// </summary>
+        public readonly int FULL_HEIGHT_MAX = 1000;
+
+        /// <summary>
+        /// минимальная высота верхнего основания
+        /// </summary>
+        public readonly int UPPER_BASE_HEIGHT_MIN = 2;
+
+        /// <summary>
+        /// максимальная высота верхнего основания
+        /// </summary>
+        public readonly int UPPER_BASE_HEIGHT_MAX = 100;
+
+        /// <summary>
+        /// минимальная высота нижнего основания
+        /// </summary>
+        public readonly int LOWER_BASE_HEIGHT_MIN = 3;
+
+        /// <summary>
+        /// максимальная высота нижнего основания
+        /// </summary>
+        public readonly int LOWER_BASE_HEIGHT_MAX = 150;
+
+        /// <summary>
+        /// минимальный диаметр нижнего основания
+        /// </summary>
+        public readonly int LOWER_BASE_DIAMETER_MIN = 5;
+
+        /// <summary>
+        /// максимальный диаметр нижнего основания
+        /// </summary>
+        public readonly int LOWER_BASE_DIAMETER_MAX = 500;
+
+        /// <summary>
+        /// минимальный диаметр верхнего основания
+        /// </summary>
+        public readonly int UPPER_BASE_DIAMETER_MIN = 3;
+
+        /// <summary>
+        /// максимальный диаметр верхнего основания
+        /// </summary>
+        public readonly int UPPER_BASE_DIAMETER_MAX = 100;
+
+        #endregion
         /// <summary>
         /// полная высота фигуры
         /// </summary>
@@ -41,7 +93,7 @@ namespace Rook
             } 
             set 
             { 
-                if (Validation(value, 10, 1000))
+                if (Validation(value, FULL_HEIGHT_MIN, FULL_HEIGHT_MAX))
                 {
                     _fullHeight = value;
                 }
@@ -58,7 +110,7 @@ namespace Rook
             } 
             set 
             {
-                if (Validation(value, 2, 150))
+                if (Validation(value, UPPER_BASE_HEIGHT_MIN, UPPER_BASE_HEIGHT_MAX))
                 {
                     _upperBaseHeight = value;
                 }
@@ -75,7 +127,7 @@ namespace Rook
             } 
             set 
             {
-                if (Validation(value, 2, 150))
+                if (Validation(value, LOWER_BASE_HEIGHT_MIN, LOWER_BASE_HEIGHT_MAX))
                 {
                     _lowerBaseHeight = value;
                 }
@@ -93,7 +145,7 @@ namespace Rook
             } 
             set 
             {
-                if (Validation(value,3,100))
+                if (Validation(value,UPPER_BASE_DIAMETER_MIN,UPPER_BASE_DIAMETER_MAX))
                 {
                     _upperBaseDiameter = value;
                 }
@@ -111,7 +163,7 @@ namespace Rook
             } 
             set 
             {
-                if (Validation(value, 5, 500))
+                if (Validation(value, LOWER_BASE_DIAMETER_MIN, LOWER_BASE_DIAMETER_MAX))
                 {
                     _lowerBaseDiameter = value;
                 }

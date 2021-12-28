@@ -5,7 +5,7 @@ namespace RookTests
 {
     //TODO: RSDN
     [TestFixture]
-    class RookInfoTests
+    public class RookInfoTests
     {
         [Test(Description ="Тест геттера и сеттера класса RookInfo свойства FullHeight")]
         public void GetFullHeight_ResultCorrect()

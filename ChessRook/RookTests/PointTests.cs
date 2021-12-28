@@ -5,7 +5,7 @@ namespace RookTests
 {
     //TODO: RSDN
     [TestFixture]
-    class PointTests
+    public class PointTests
     {
         [Test(Description = "Тест геттера и сеттера класса RookInfo свойства X")]
         public void GetX_ResultCorrect()

@@ -81,7 +81,6 @@ namespace KompasApi
                 Document2D = _kompasObject.Document2D();
                 Part = (ksPart)Document3D.GetPart((int)Part_Type.pTop_Part);
             }
-
         }
 
         /// <summary>
