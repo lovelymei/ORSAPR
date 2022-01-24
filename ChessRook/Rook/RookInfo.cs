@@ -10,32 +10,32 @@ namespace Rook
         /// <summary>
         /// минимальная полная высота ладьи
         /// </summary>
-        public readonly int FULL_HEIGHT_MIN = 10;
+        public readonly int FULL_HEIGHT_MIN = 15;
 
         /// <summary>
         /// максимальная полная высота ладьи
         /// </summary>
-        public readonly int FULL_HEIGHT_MAX = 1000;
+        public readonly int FULL_HEIGHT_MAX = 600;
 
         /// <summary>
         /// минимальная высота верхнего основания
         /// </summary>
-        public readonly int UPPER_BASE_HEIGHT_MIN = 2;
+        public readonly int UPPER_BASE_HEIGHT_MIN = 4;
 
         /// <summary>
         /// максимальная высота верхнего основания
         /// </summary>
-        public readonly int UPPER_BASE_HEIGHT_MAX = 100;
+        public readonly int UPPER_BASE_HEIGHT_MAX = 90;
 
         /// <summary>
         /// минимальная высота нижнего основания
         /// </summary>
-        public readonly int LOWER_BASE_HEIGHT_MIN = 3;
+        public readonly int LOWER_BASE_HEIGHT_MIN = 5;
 
         /// <summary>
         /// максимальная высота нижнего основания
         /// </summary>
-        public readonly int LOWER_BASE_HEIGHT_MAX = 150;
+        public readonly int LOWER_BASE_HEIGHT_MAX = 100;
 
         /// <summary>
         /// минимальный диаметр нижнего основания
@@ -58,6 +58,7 @@ namespace Rook
         public readonly int UPPER_BASE_DIAMETER_MAX = 100;
 
         #endregion
+
         /// <summary>
         /// полная высота фигуры
         /// </summary>
@@ -169,6 +170,11 @@ namespace Rook
                 }
             } 
         }
+
+        /// <summary>
+        /// Скруглять ли грани ладьи
+        /// </summary>
+        public bool HasFillet { get; set; }
 
         /// <summary>
         /// Конструктор
