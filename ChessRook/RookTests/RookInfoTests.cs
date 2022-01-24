@@ -10,7 +10,7 @@ namespace RookTests
         [Test(Description ="Тест геттера и сеттера класса RookInfo свойства FullHeight")]
         public void GetFullHeight_ResultCorrect()
         {
-            var expected = 10;
+            var expected = 20;
             var rook = new RookInfo { FullHeight = expected };
 
             Assert.AreEqual(expected, rook.FullHeight);
@@ -112,6 +112,17 @@ namespace RookTests
             Assert.AreEqual(expected, rook.UpperBaseDiameter);
         }
 
+        [Test(Description = "Тест сеттера класса RookInfo свойства HasFillet")]
+        public void SetHasFillet_Setted()
+        {
+            bool expected = true;
+            var rook = new RookInfo();
+
+            rook.HasFillet = expected;
+
+            Assert.AreEqual(expected, rook.HasFillet);
+        }
+
         [Test(Description = "Тест метода Validation класса RookInfo. Он должен вернуть true")]
         public void Validation_ReturnsTrue()
         {
@@ -137,5 +148,7 @@ namespace RookTests
             var actual = rook.Validation(value, min, max);
             Assert.IsFalse(actual);
         }
+
+       
     }
 }
