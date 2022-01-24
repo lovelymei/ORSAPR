@@ -50,6 +50,7 @@ namespace ChessRookUI
             this.label10 = new System.Windows.Forms.Label();
             this.buildButton = new System.Windows.Forms.Button();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.filletCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -116,7 +117,6 @@ namespace ChessRookUI
             this.fullHeightTextBox.Name = "fullHeightTextBox";
             this.fullHeightTextBox.Size = new System.Drawing.Size(55, 23);
             this.fullHeightTextBox.TabIndex = 6;
-            this.fullHeightTextBox.TextChanged += new System.EventHandler(this.fullHeightTextBox_TextChanged);
             // 
             // lowerDiameterTextBox
             // 
@@ -125,7 +125,6 @@ namespace ChessRookUI
             this.lowerDiameterTextBox.Size = new System.Drawing.Size(55, 23);
             this.lowerDiameterTextBox.TabIndex = 7;
             this.toolTip.SetToolTip(this.lowerDiameterTextBox, "Эта величина должна быть меньше величины С");
-            this.lowerDiameterTextBox.TextChanged += new System.EventHandler(this.lowerDiameterTextBox_TextChanged);
             // 
             // upperDiameterTextBox
             // 
@@ -133,23 +132,20 @@ namespace ChessRookUI
             this.upperDiameterTextBox.Name = "upperDiameterTextBox";
             this.upperDiameterTextBox.Size = new System.Drawing.Size(55, 23);
             this.upperDiameterTextBox.TabIndex = 8;
-            this.upperDiameterTextBox.TextChanged += new System.EventHandler(this.upperDiameterTextBox_TextChanged);
             // 
             // upperHeightTextBox
             // 
-            this.upperHeightTextBox.Location = new System.Drawing.Point(237, 272);
+            this.upperHeightTextBox.Location = new System.Drawing.Point(237, 308);
             this.upperHeightTextBox.Name = "upperHeightTextBox";
             this.upperHeightTextBox.Size = new System.Drawing.Size(55, 23);
             this.upperHeightTextBox.TabIndex = 9;
-            this.upperHeightTextBox.TextChanged += new System.EventHandler(this.upperHeightTextBox_TextChanged);
             // 
             // lowerHeightTextBox
             // 
-            this.lowerHeightTextBox.Location = new System.Drawing.Point(237, 304);
+            this.lowerHeightTextBox.Location = new System.Drawing.Point(237, 276);
             this.lowerHeightTextBox.Name = "lowerHeightTextBox";
             this.lowerHeightTextBox.Size = new System.Drawing.Size(55, 23);
             this.lowerHeightTextBox.TabIndex = 10;
-            this.lowerHeightTextBox.TextChanged += new System.EventHandler(this.lowerHeightTextBox_TextChanged);
             // 
             // pictureBox2
             // 
@@ -176,9 +172,9 @@ namespace ChessRookUI
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(328, 180);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(104, 15);
+            this.label6.Size = new System.Drawing.Size(98, 15);
             this.label6.TabIndex = 13;
-            this.label6.Text = "(10 мм - 1000 мм)";
+            this.label6.Text = "(15 мм - 600 мм)";
             // 
             // label7
             // 
@@ -205,20 +201,20 @@ namespace ChessRookUI
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(92, 15);
             this.label9.TabIndex = 16;
-            this.label9.Text = "(3 мм - 150 мм)";
+            this.label9.Text = "(5 мм - 100 мм)";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(328, 308);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(95, 15);
+            this.label10.Size = new System.Drawing.Size(89, 15);
             this.label10.TabIndex = 17;
-            this.label10.Text = "(2 мм - 100 мм )";
+            this.label10.Text = "(4 мм - 90 мм )";
             // 
             // buildButton
             // 
-            this.buildButton.Location = new System.Drawing.Point(350, 345);
+            this.buildButton.Location = new System.Drawing.Point(350, 343);
             this.buildButton.Name = "buildButton";
             this.buildButton.Size = new System.Drawing.Size(100, 23);
             this.buildButton.TabIndex = 18;
@@ -232,12 +228,23 @@ namespace ChessRookUI
             this.toolTip.InitialDelay = 1;
             this.toolTip.ReshowDelay = 100;
             // 
+            // filletCheckBox
+            // 
+            this.filletCheckBox.AutoSize = true;
+            this.filletCheckBox.Location = new System.Drawing.Point(11, 345);
+            this.filletCheckBox.Name = "filletCheckBox";
+            this.filletCheckBox.Size = new System.Drawing.Size(118, 19);
+            this.filletCheckBox.TabIndex = 19;
+            this.filletCheckBox.Text = "Скруглить грани";
+            this.filletCheckBox.UseVisualStyleBackColor = true;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(464, 380);
+            this.Controls.Add(this.filletCheckBox);
             this.Controls.Add(this.buildButton);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
@@ -261,6 +268,7 @@ namespace ChessRookUI
             this.MinimumSize = new System.Drawing.Size(480, 419);
             this.Name = "MainWindow";
             this.Text = "Ладья";
+            this.Load += new System.EventHandler(this.MainWindow_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
@@ -291,6 +299,7 @@ namespace ChessRookUI
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button buildButton;
         private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.CheckBox filletCheckBox;
     }
 }
 

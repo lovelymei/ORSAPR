@@ -2,29 +2,35 @@
 using Rook;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace ChessRookUI
 {
     //TODO: XML
+    /// <summary>
+    /// Главное окно приложения
+    /// </summary>
     public partial class MainWindow : Form
     {
         /// <summary>
         /// Зеленый цвет 
         /// </summary>
-        private readonly Color SuccessColor = Color.LightGreen;
+        private readonly Color _successColor = Color.LightGreen;
 
         /// <summary>
         /// Красный цвет 
         /// </summary>
-        private readonly Color ErrorColor = Color.LightCoral;
+        private readonly Color _errorColor = Color.LightCoral;
 
         /// <summary>
         /// Белый цвет
         /// </summary>
-        private readonly Color EmptyColor = Color.White;
+        private readonly Color _emptyColor = Color.White;
 
         /// <summary>
         /// Данные для построения ладьи
@@ -40,6 +46,12 @@ namespace ChessRookUI
         /// Поля для ввода 
         /// </summary>
         private List<Control> _textBoxes;
+
+        /// <summary>
+        /// Потокобезопасный вызов асинхронного метода
+        /// </summary>
+        private BackgroundWorker _backgroundWorker =
+            new BackgroundWorker();
 
         /// <summary>
         /// Конструктор MainWindow
@@ -65,10 +77,59 @@ namespace ChessRookUI
                 "Эта величина должна быть больше величины C");
             toolTip.SetToolTip(upperDiameterTextBox,
                 "Эта величина должна быть меньше величины В");
-            toolTip.SetToolTip(lowerHeightTextBox, 
-                "Эта величина должна быть меньше величины Е");
+            toolTip.SetToolTip(lowerHeightTextBox,
+                "Эта величина должна быть больше величины Е");
             toolTip.SetToolTip(upperHeightTextBox, 
-                "Эта величина должна быть больше величины D");
+                "Эта величина должна быть меньше величины D");
+        }
+
+        /// <summary>
+        /// Общий метод валидации
+        /// </summary>
+        private void Check()
+        {
+            while (true)
+            {
+                Thread.Sleep(100);
+
+                CheckDepencies(lowerHeightTextBox, upperHeightTextBox,
+                    _rookInfo.LOWER_BASE_HEIGHT_MIN, _rookInfo.LOWER_BASE_HEIGHT_MAX,
+                    _rookInfo.UPPER_BASE_HEIGHT_MIN, _rookInfo.UPPER_BASE_HEIGHT_MAX);
+
+                CheckDepencies(lowerDiameterTextBox, upperDiameterTextBox,
+                    _rookInfo.LOWER_BASE_DIAMETER_MIN, _rookInfo.LOWER_BASE_DIAMETER_MAX,
+                    _rookInfo.UPPER_BASE_DIAMETER_MIN, _rookInfo.UPPER_BASE_DIAMETER_MAX);
+
+                CheckHeight();
+
+                CheckColor();
+            }
+        }
+
+        /// <summary>
+        /// Валидация одного текстового поля
+        /// </summary>
+        /// <param name="textBox">textbox,значение в котором будет проверяться</param>
+        /// <param name="min">минимальное значение</param>
+        /// <param name="max">максимальное значение</param>
+        /// <returns></returns>
+        private Color CheckTextBox(TextBox textBox, int min,int max)
+        {
+            if (!string.IsNullOrEmpty(textBox.Text))
+            {
+                var isParsed = int.TryParse(textBox.Text, out int value);
+                var isCorrect = _rookInfo.Validation(value, min, max);
+                
+                if (isParsed && isCorrect)
+                {
+                    return _successColor;
+                }
+                else
+                {
+                    return _errorColor;
+                }
+            }
+            return _emptyColor;
         }
 
         /// <summary>
@@ -76,23 +137,34 @@ namespace ChessRookUI
         /// </summary>
         private void CheckHeight()
         {
-            if (!string.IsNullOrEmpty(fullHeightTextBox.Text) && 
-                !string.IsNullOrEmpty(upperHeightTextBox.Text) && 
-                !string.IsNullOrEmpty(lowerHeightTextBox.Text))
+            var fullHeightColor = CheckTextBox(fullHeightTextBox, 
+                _rookInfo.FULL_HEIGHT_MIN, _rookInfo.FULL_HEIGHT_MAX);
+
+            if (fullHeightColor == _successColor
+                && upperHeightTextBox.BackColor == _successColor
+                && lowerHeightTextBox.BackColor == _successColor)
             {
                 int.TryParse(upperHeightTextBox.Text, out int upper);
                 int.TryParse(lowerHeightTextBox.Text, out int lower);
                 int.TryParse(fullHeightTextBox.Text, out int full);
 
-                if ((upper + lower) >= full)
+                if ((upper*2 + lower) >= full)
                 {
                     DrawRed(fullHeightTextBox);
+                    DrawRed(lowerHeightTextBox);
+                    DrawRed(upperHeightTextBox);
+                    return;
                 }
-                else
-                {
-                    DrawGreen(fullHeightTextBox);
-                }
+
+                DrawGreen(fullHeightTextBox);
+                DrawGreen(lowerHeightTextBox);
+                DrawGreen(upperHeightTextBox);
+
+                return;
             }
+
+            fullHeightTextBox.BackColor = fullHeightColor;
+            return;
         }
 
         /// <summary>
@@ -100,49 +172,50 @@ namespace ChessRookUI
         /// </summary>
         private void CheckColor()
         {
-            if (_textBoxes.All(t => t.BackColor == SuccessColor))
+            if (_textBoxes.All(t => t.BackColor == _successColor))
             {
                 buildButton.Enabled = true;
-            } 
-        }
-        
-        /// <summary>
-        /// Проверка на соблюдение зависимостей
-        /// </summary>
-        /// <param name="upperBox"> textbox </param>
-        /// <param name="lowerBox"> textbox </param>
-        private void CheckDepencies(TextBox upperBox, TextBox lowerBox)
-        {
-            if (!string.IsNullOrEmpty(upperBox.Text) &&
-                !string.IsNullOrEmpty(lowerBox.Text))
-            {
-                int.TryParse(upperBox.Text, out int upper);
-                int.TryParse(lowerBox.Text, out int lower);
-                
-                if (lower < upper)
-                {
-                    DrawRed(lowerBox);
-                    DrawRed(upperBox);
-                }
-                else
-                {
-                    DrawGreen(lowerBox);
-                    DrawGreen(upperBox);
-                }
             }
         }
 
         /// <summary>
-        /// Проверка на пустые поля 
+        /// Проверка на соблюдение условий зависимости
         /// </summary>
-        private void CheckNull()
+        /// <param name="greaterBox">TextBox, в котором должно быть значение больше</param>
+        /// <param name="lessBox">TextBox, в котором должно быть значение меньше</param>
+        /// <param name="greaterMin"> Минимальное значение для большего </param>
+        /// <param name="greaterMax"> Максимальное значение для большего</param>
+        /// <param name="lessMin"> Минимальное значение для меньшего </param>
+        /// <param name="lessMax"> Максимальное значение для большего </param>
+        /// <returns></returns>
+        private void CheckDepencies(TextBox greaterBox, TextBox lessBox,
+            int greaterMin, int greaterMax, int lessMin, int lessMax)
         {
-            foreach (var textbox in _textBoxes)
+            var first = CheckTextBox(greaterBox, greaterMin, greaterMax);
+            var second = CheckTextBox(lessBox, lessMin, lessMax);
+
+            if (first == _successColor && second == _successColor)
             {
-                if (textbox.Text == "")
+                int.TryParse(greaterBox.Text, out int greater);
+                int.TryParse(lessBox.Text, out int less);
+
+                if (less > greater)
                 {
-                    textbox.BackColor = EmptyColor;
+                    DrawRed(lessBox);
+                    DrawRed(greaterBox);
+                    return;
                 }
+                else
+                {
+                    DrawGreen(lessBox);
+                    DrawGreen(greaterBox);
+                    return;
+                }
+            }
+            else
+            {
+                greaterBox.BackColor = first;
+                lessBox.BackColor = second;
             }
         }
 
@@ -152,7 +225,7 @@ namespace ChessRookUI
         /// <param name="box"> textbox, который надо перекрасить </param>
         private void DrawRed(TextBox box)
         {
-            box.BackColor = ErrorColor;
+            box.BackColor = _errorColor;
             buildButton.Enabled = false;
         }
 
@@ -162,104 +235,7 @@ namespace ChessRookUI
         /// <param name="box"> textbox, который надо перекрасить </param>
         private void DrawGreen(TextBox box)
         {
-            box.BackColor = SuccessColor;
-        }
-
-        /// <summary>
-        /// Все проверки (мы против дублирования)
-        /// </summary>
-        private void Checking()
-        {
-            CheckDepencies(upperHeightTextBox, fullHeightTextBox);
-            CheckDepencies(lowerHeightTextBox, fullHeightTextBox);
-            CheckHeight();
-            CheckDepencies(upperDiameterTextBox, lowerDiameterTextBox);
-            CheckDepencies(lowerHeightTextBox, upperHeightTextBox);
-            CheckNull();
-            CheckColor();
-        }
-
-        /// <summary>
-        /// Парсинг и валидация введенных значений
-        /// </summary>
-        /// <param name="box"> textbox, из которого берутся значения </param>
-        /// <param name="min"> нижняя граница диапазона </param>
-        /// <param name="max"> верхняяя граница диапазона </param>
-        private void ParsingAndValidation(TextBox box, int min, int max)
-        {
-            var isParsed = int.TryParse(box.Text, out int value);
-            var isCorrect = _rookInfo.Validation(value, min, max);
-            if (isParsed && isCorrect)
-            {
-                DrawGreen(box);
-            }
-            else
-            {
-                DrawRed(box);
-            }
-        }
-
-        private void TextChangedChecking(TextBox box,int min,int max)
-        {
-            ParsingAndValidation(box, min, max);
-            Checking();
-        }
-
-        //TODO: занести диапазоны в параметры
-        //tODO: Дублирования
-        /// <summary>
-        /// Обработка события: изменение текста в fullHeightTextBox
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void fullHeightTextBox_TextChanged(object sender, EventArgs e)
-        {
-            TextChangedChecking(fullHeightTextBox, 
-                _rookInfo.FULL_HEIGHT_MIN, _rookInfo.FULL_HEIGHT_MAX);
-        }
-
-        /// <summary>
-        /// Обработка события: изменение текста в lowerDiameterTextBox
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void lowerDiameterTextBox_TextChanged(object sender, EventArgs e)
-        {
-            TextChangedChecking(lowerDiameterTextBox, 
-                _rookInfo.LOWER_BASE_DIAMETER_MIN, _rookInfo.LOWER_BASE_DIAMETER_MAX);
-        }
-
-        /// <summary>
-        /// Обработка события: изменение текста в upperDiameterTextBox
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void upperDiameterTextBox_TextChanged(object sender, EventArgs e)
-        {
-            TextChangedChecking(upperDiameterTextBox, 
-                _rookInfo.UPPER_BASE_DIAMETER_MIN, _rookInfo.UPPER_BASE_DIAMETER_MAX);
-        }
-
-        /// <summary>
-        /// Обработка события: изменение текста в upperHeightTextBox
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void upperHeightTextBox_TextChanged(object sender, EventArgs e)
-        {
-            TextChangedChecking(upperHeightTextBox, 
-                _rookInfo.UPPER_BASE_HEIGHT_MIN, _rookInfo.UPPER_BASE_HEIGHT_MAX);
-        }
-
-        /// <summary>
-        /// Обработка события: изменение текста в lowerHeightTextBox
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void lowerHeightTextBox_TextChanged(object sender, EventArgs e)
-        {
-            TextChangedChecking(lowerHeightTextBox, 
-                _rookInfo.LOWER_BASE_HEIGHT_MIN, _rookInfo.LOWER_BASE_HEIGHT_MAX);
+            box.BackColor = _successColor;
         }
 
         /// <summary>
@@ -283,9 +259,24 @@ namespace ChessRookUI
                 LowerBaseDiameter = int.Parse(lowerDiameterTextBox.Text),
                 UpperBaseDiameter = int.Parse(upperDiameterTextBox.Text),
                 LowerBaseHeight = int.Parse(lowerHeightTextBox.Text),
-                UpperBaseHeight = int.Parse(upperHeightTextBox.Text)
+                UpperBaseHeight = int.Parse(upperHeightTextBox.Text),
+                HasFillet = filletCheckBox.Checked
             };
-            _modelCreator.CreateRook(_rookInfo);
+
+            _modelCreator.CreateRook(_rookInfo);    
+        }
+
+        /// <summary>
+        /// Обработчик события загрузки формы
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MainWindow_Load(object sender, EventArgs e)
+        {
+            CheckForIllegalCrossThreadCalls = false;
+            _backgroundWorker.DoWork += (obj, ea) =>
+                Check();
+            _backgroundWorker.RunWorkerAsync();
         }
     }
 }
