@@ -23,7 +23,6 @@ namespace KompasApi
         /// <summary>
         /// Конструктор
         /// </summary>
-        /// <param name="rookInfo"> Данные ладьи </param>
         public ModelCreator() { }
 
         /// <summary>
