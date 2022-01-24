@@ -57,13 +57,25 @@ namespace KompasApi
         /// <summary>
         /// Создание модели ладьи
         /// </summary>
-        /// <param name="rook"></param>
+        /// <param name="rookInfo"> Объект класса RookInfo</param>
         public void CreateRook(RookInfo rookInfo)
         {
             CreateDocument();
             _point = new Point();
             CreateBase(rookInfo);
-            CreateBattlement(rookInfo.UpperBaseHeight,rookInfo.UpperBaseDiameter);   
+            CreateBattlement(rookInfo.UpperBaseHeight,rookInfo.UpperBaseDiameter);
+            if (rookInfo.HasFillet)
+            {
+                //фаска на нижнем основании
+                var x = 0;
+                var y = (rookInfo.FullHeight - rookInfo.UpperBaseHeight - rookInfo.LowerBaseHeight);
+                var z = rookInfo.LowerBaseDiameter / 2;
+                CreateFillet(1, x, y, z);
+                //на верхнем основании
+                y = rookInfo.UpperBaseHeight;
+                z = rookInfo.UpperBaseDiameter / 2;
+                CreateFillet(1, x, y, z);
+            }
             _kompas.Document3D.drawMode = (int)ViewMode.vm_Shaded;
             _kompas.Document3D.shadedWireframe = true;
         }
@@ -120,7 +132,6 @@ namespace KompasApi
         private void CreateBattlement(int upperBaseHeight,int upperBaseDiameter)
         {
             //TODO: RSDN
-            //новый скетч для зубчиков ладьи 
             ksEntity battlePlane;
             ksEntity battleSketch;
             ksSketchDefinition battleSketchDefinition;
@@ -151,11 +162,14 @@ namespace KompasApi
         private void Extrude(ksEntity sketch, int upperBaseHeight)
         {
             int depth = upperBaseHeight;
-            var extrudeEntity = (ksEntity)_kompas.Part.NewEntity((short)Obj3dType.o3d_bossExtrusion);
+            var extrudeEntity = (ksEntity)_kompas.Part
+                .NewEntity((short)Obj3dType.o3d_bossExtrusion);
             // интерфейс базовой операции выдавливания
-            var extrudeDefinition = (ksBossExtrusionDefinition)extrudeEntity.GetDefinition();
+            var extrudeDefinition = (ksBossExtrusionDefinition)extrudeEntity
+                .GetDefinition();
             // интерфейс структуры параметров выдавливания
-            ksExtrusionParam extrudeParameters = (ksExtrusionParam)extrudeDefinition.ExtrusionParam();
+            ksExtrusionParam extrudeParameters = (ksExtrusionParam)extrudeDefinition
+                .ExtrusionParam();
             extrudeParameters.direction = (short)Direction_Type.dtNormal;
             // интерфейс структуры параметров тонкой стенки
             ksThinParam thinParam = (ksThinParam)extrudeDefinition.ThinParam();
@@ -195,6 +209,29 @@ namespace KompasApi
             rotateDefinition.SetSideParam(true, 360);
             rotateDefinition.SetSketch(sketch);
             rotatedEntity.Create();
+        }
+
+        /// <summary>
+        /// Создание фаски на выбранном ребре
+        /// </summary>
+        /// <param name="radiusCrossTie">Радиус</param>
+        /// <param name="x">X-координата точки на ребре</param>
+        /// <param name="y">Y-координата точки на ребре</param>
+        /// <param name="z">Z-координата точки на ребре</param>
+        private void CreateFillet(int radiusCrossTie, int x,
+            int y, int z)
+        {
+            var filletEntity = (ksEntity)_kompas.Part.NewEntity((short)Obj3dType.o3d_fillet);
+            var filletDef = (ksFilletDefinition)filletEntity.GetDefinition();
+            filletDef.radius = radiusCrossTie;
+            filletDef.tangent = true;
+            ksEntityCollection iArray = filletDef.array();
+            ksEntityCollection iCollection = _kompas.Part.EntityCollection((short)Obj3dType.o3d_edge);
+
+            iCollection.SelectByPoint(x, y, z);
+            var iEdge = iCollection.Last();
+            iArray.Add(iEdge);
+            filletEntity.Create();
         }
     }
 }
