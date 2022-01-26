@@ -18,8 +18,7 @@ namespace KompasApi
         /// Объект Point
         /// </summary>
         private Point _point;
-
-        //TODO: Несоответствие XML-комментария сигнатуре метода 
+        
         /// <summary>
         /// Конструктор
         /// </summary>
@@ -52,7 +51,6 @@ namespace KompasApi
             _point.Y += y;
         }
         
-        //TODO: Несоответствие XML-комментария сигнатуре метода 
         /// <summary>
         /// Создание модели ладьи
         /// </summary>

@@ -11,7 +11,6 @@ using System.Windows.Forms;
 
 namespace ChessRookUI
 {
-    //TODO: XML
     /// <summary>
     /// Главное окно приложения
     /// </summary>
@@ -64,8 +63,7 @@ namespace ChessRookUI
 
             _rookInfo = new RookInfo();
             _modelCreator = new ModelCreator();
-
-            //TODO: RSDN
+            
             _textBoxes = Controls
                 .Cast<Control>()
                 .Where(c => c.GetType() == typeof(TextBox))

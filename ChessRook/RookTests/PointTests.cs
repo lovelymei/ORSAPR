@@ -3,10 +3,6 @@ using Rook;
 
 namespace RookTests
 {
-    //TODO: RSDN
-    /// <summary>
-    /// Класс теста
-    /// </summary>
     [TestFixture]
     public class PointTests
     {

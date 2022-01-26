@@ -30,6 +30,7 @@ namespace KompasApi
         /// </summary>
         public ksPart Part;
 
+        //TODO:
         /// <summary>
         /// свойство для _kompasObject
         /// </summary>
