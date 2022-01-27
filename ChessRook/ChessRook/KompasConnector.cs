@@ -30,16 +30,6 @@ namespace KompasApi
         /// </summary>
         public ksPart Part;
 
-        //TODO:
-        /// <summary>
-        /// свойство для _kompasObject
-        /// </summary>
-        public KompasObject KompasObject
-        {
-            get { return _kompasObject; }
-            set { _kompasObject = value; }
-        }
-
         /// <summary>
         /// Открытие КОМПАС 3Д
         /// </summary>
