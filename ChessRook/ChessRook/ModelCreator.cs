@@ -83,8 +83,6 @@ namespace KompasApi
         /// <param name="rookInfo"> Данные ладьи для построения </param>
         private void CreateBase(RookInfo rookInfo)
         {
-            //TODO: RSDN
-
             ksEntity plane = _kompas.Part.GetDefaultEntity((short)Obj3dType.o3d_planeXOY);
             ksEntity sketch = _kompas.Part.NewEntity((short)Obj3dType.o3d_sketch);
             ksSketchDefinition sketchDefinition = sketch.GetDefinition();
@@ -129,7 +127,6 @@ namespace KompasApi
         /// <param name="upperBaseDiameter">Диаметр верхнего основания</param>
         private void CreateBattlement(int upperBaseHeight,int upperBaseDiameter)
         {
-            //TODO: RSDN
             ksEntity battlePlane = _kompas.Part.GetDefaultEntity((short)Obj3dType.o3d_planeXOZ);
             ksEntity battleSketch = _kompas.Part.NewEntity((short)Obj3dType.o3d_sketch);
             ksSketchDefinition battleSketchDefinition = battleSketch.GetDefinition();
@@ -191,8 +188,6 @@ namespace KompasApi
         /// <param name="sketch"> эскиз</param>
         private void Rotate(ksEntity sketch)
         {
-            //TODO: RSDN
-
             //интерфейс объекта "операция выдавливания вращением"
             ksEntity rotatedEntity = 
                 (ksEntity)_kompas.Part.NewEntity((short)Obj3dType.o3d_baseRotated);
