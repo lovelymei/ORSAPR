@@ -147,7 +147,5 @@ namespace RookTests
             var actual = rook.Validation(value, min, max);
             Assert.IsFalse(actual);
         }
-
-       
     }
 }

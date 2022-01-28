@@ -80,15 +80,14 @@ namespace KompasApi
         /// <summary>
         /// Создание основной части ладьи
         /// </summary>
+        /// <param name="rookInfo"> Данные ладьи для построения </param>
         private void CreateBase(RookInfo rookInfo)
         {
             //TODO: RSDN
-            ksEntity plane;
-            ksSketchDefinition sketchDefinition;
 
-            plane = _kompas.Part.GetDefaultEntity((short)Obj3dType.o3d_planeXOY);
+            ksEntity plane = _kompas.Part.GetDefaultEntity((short)Obj3dType.o3d_planeXOY);
             ksEntity sketch = _kompas.Part.NewEntity((short)Obj3dType.o3d_sketch);
-            sketchDefinition = sketch.GetDefinition();
+            ksSketchDefinition sketchDefinition = sketch.GetDefinition();
             sketchDefinition.SetPlane(plane);
 
             sketch.Create();
@@ -126,16 +125,14 @@ namespace KompasApi
         /// <summary>
         /// Создание верхнего элемента
         /// </summary>
+        /// <param name="upperBaseHeight">Высота верхнего основания</param>
+        /// <param name="upperBaseDiameter">Диаметр верхнего основания</param>
         private void CreateBattlement(int upperBaseHeight,int upperBaseDiameter)
         {
             //TODO: RSDN
-            ksEntity battlePlane;
-            ksEntity battleSketch;
-            ksSketchDefinition battleSketchDefinition;
-
-            battlePlane = _kompas.Part.GetDefaultEntity((short)Obj3dType.o3d_planeXOZ);
-            battleSketch = _kompas.Part.NewEntity((short)Obj3dType.o3d_sketch);
-            battleSketchDefinition = battleSketch.GetDefinition();
+            ksEntity battlePlane = _kompas.Part.GetDefaultEntity((short)Obj3dType.o3d_planeXOZ);
+            ksEntity battleSketch = _kompas.Part.NewEntity((short)Obj3dType.o3d_sketch);
+            ksSketchDefinition battleSketchDefinition = battleSketch.GetDefinition();
             battleSketchDefinition.SetPlane(battlePlane);
 
             battleSketch.Create();
@@ -155,7 +152,8 @@ namespace KompasApi
         /// <summary>
         /// Выдавливание
         /// </summary>
-        /// <param name="sketch"></param>
+        /// <param name="sketch"> эскиз </param>
+        /// <param name="upperBaseHeight"> высота верхнего основания </param>
         private void Extrude(ksEntity sketch, int upperBaseHeight)
         {
             int depth = upperBaseHeight;
@@ -190,18 +188,18 @@ namespace KompasApi
         /// <summary>
         /// Выдавливание вращением
         /// </summary>
-        /// <param name="sketch"></param>
+        /// <param name="sketch"> эскиз</param>
         private void Rotate(ksEntity sketch)
         {
             //TODO: RSDN
-            ksEntity rotatedEntity;
-            ksBaseRotatedDefinition rotateDefinition;
 
             //интерфейс объекта "операция выдавливания вращением"
-            rotatedEntity = (ksEntity)_kompas.Part.NewEntity((short)Obj3dType.o3d_baseRotated);
+            ksEntity rotatedEntity = 
+                (ksEntity)_kompas.Part.NewEntity((short)Obj3dType.o3d_baseRotated);
 
             //интерфейс параметров операции  "выдавливание вращением"
-            rotateDefinition = (ksBaseRotatedDefinition)rotatedEntity.GetDefinition();
+            ksBaseRotatedDefinition rotateDefinition = 
+                (ksBaseRotatedDefinition)rotatedEntity.GetDefinition();
             rotateDefinition.directionType = (short)Direction_Type.dtBoth;
             rotateDefinition.SetSideParam(true, 360);
             rotateDefinition.SetSketch(sketch);
